@@ -6,29 +6,42 @@
     <title>WIX UI · bespoke websites in the UK</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Cyberpunk / tech fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #f5f3f0;
-            color: #1e1b1b;
-            line-height: 1.5;
+            background-color: #0a0a0f;
+            color: #c0c0ff;
+            line-height: 1.6;
             scroll-behavior: smooth;
+            font-family: 'Exo 2', sans-serif;
+            background-image: 
+                linear-gradient(rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.9)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0f"/><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="%23d64000" stroke-width="0.5" fill="none"/></svg>');
+            background-size: 100px;
         }
 
         :root {
-            --primary: #11181c;
-            --accent: #d64000;
-            --accent-light: #ff5c1a;
-            --bg-light: #faf9f7;
-            --text-muted: #4b4b4b;
-            --border-subtle: rgba(0,0,0,0.05);
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --primary: #0a0a0f;
+            --accent: #d64000;        /* WIX UI orange */
+            --accent-glow: #ff5c1a;
+            --neon-blue: #00ffff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --cyber-gray: #1a1a2e;
+            --cyber-text: #c0c0ff;
+            --text-muted: #a0a0c0;
+            --border-subtle: rgba(214,64,0,0.2);
+            --shadow-neon: 0 0 10px #d64000, 0 0 20px #d64000;
+            --shadow: 0 25px 50px -12px rgba(214,64,0,0.3);
+            --bg-light: #0f0f1a;
         }
 
         /* navigation */
@@ -36,27 +49,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.8rem 5%;
-            background: var(--bg-light);
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.2rem 5%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            background-color: rgba(250, 249, 247, 0.85);
+            transition: all 0.3s ease;
         }
 
-        .logo {
-            font-size: 1.9rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+        .logo-img {
+            height: 80px;
+            width: auto;
             cursor: pointer;
-        }
-
-        .logo-dot {
-            color: var(--accent);
-            font-size: 2.2rem;
-            margin-left: 2px;
+            display: block;
+            filter: drop-shadow(0 0 8px var(--accent));
         }
 
         .nav-links {
@@ -68,17 +77,21 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--primary);
+            color: var(--cyber-text);
             font-size: 1rem;
             transition: 0.2s;
             border-bottom: 2px solid transparent;
             padding-bottom: 4px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
             border-bottom-color: var(--accent);
             color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
         }
 
         /* dropdown styles */
@@ -89,7 +102,7 @@
 
         .dropbtn {
             background: transparent;
-            color: var(--primary);
+            color: var(--cyber-text);
             font-size: 1rem;
             font-weight: 500;
             border: none;
@@ -98,6 +111,9 @@
             border-bottom: 2px solid transparent;
             padding-bottom: 4px;
             transition: 0.2s;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .dropbtn:hover {
@@ -110,17 +126,17 @@
             position: absolute;
             top: 100%;
             left: -1rem;
-            background: white;
+            background: var(--cyber-gray);
             min-width: 240px;
             box-shadow: var(--shadow);
-            border-radius: 30px;
+            border-radius: 8px;
             padding: 1.2rem 1rem;
             z-index: 200;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--accent);
         }
 
         .dropdown-content a {
-            color: var(--primary);
+            color: var(--cyber-text);
             padding: 0.7rem 2rem;
             text-decoration: none;
             display: block;
@@ -130,8 +146,8 @@
         }
 
         .dropdown-content a:hover {
-            background: rgba(214,64,0,0.05);
-            border-radius: 15px;
+            background: rgba(214,64,0,0.2);
+            border-radius: 4px;
             color: var(--accent);
         }
 
@@ -140,22 +156,25 @@
         }
 
         .nav-cta {
-            background: var(--primary);
-            color: white !important;
+            background: transparent;
+            color: var(--accent) !important;
             padding: 0.6rem 1.6rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             font-size: 0.95rem;
-            border: none;
+            border: 2px solid var(--accent);
             transition: 0.2s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
         }
 
         .nav-cta:hover {
             background: var(--accent);
-            transform: scale(1.02);
-            border-bottom: none !important;
+            color: #0a0a0f !important;
+            box-shadow: 0 0 20px var(--accent);
+            transform: translateY(-2px);
         }
 
         /* main container */
@@ -165,7 +184,7 @@
             padding: 0 5%;
         }
 
-        /* hero section (home) */
+        /* hero section */
         .hero {
             padding: 5rem 0 6rem 0;
             display: flex;
@@ -184,12 +203,13 @@
             letter-spacing: 2px;
             font-size: 0.8rem;
             color: var(--accent);
-            background: rgba(214, 64, 0, 0.08);
+            background: rgba(214, 64, 0, 0.1);
             display: inline-block;
             padding: 0.4rem 1rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             margin-bottom: 1.5rem;
+            border: 1px solid var(--accent);
         }
 
         .hero-left h1 {
@@ -198,20 +218,24 @@
             line-height: 1.1;
             letter-spacing: -0.03em;
             margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
 
-        /* rotating word animation */
+        /* rotating word animation - cyber style */
         .rotating-words {
             display: inline-block;
-            min-width: 200px;
+            min-width: 280px;
             position: relative;
             color: var(--accent);
-            border-bottom: 4px solid rgba(214, 64, 0, 0.25);
+            border-bottom: 4px solid var(--accent);
             white-space: nowrap;
             vertical-align: middle;
             text-align: left;
             height: 1.2em;            
             margin: 0 4px;
+            text-shadow: 0 0 10px var(--accent);
         }
 
         .word {
@@ -247,7 +271,7 @@
 
         .hero-left p {
             font-size: 1.2rem;
-            color: var(--text-muted);
+            color: var(--cyber-text);
             max-width: 500px;
             margin-bottom: 2.5rem;
         }
@@ -259,76 +283,83 @@
         }
 
         .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
             padding: 1rem 2.6rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.15s;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 8px 18px -8px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
         }
 
         .btn-primary:hover {
-            background: var(--accent);
+            background: var(--neon-blue);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--neon-blue);
             transform: translateY(-3px);
-            box-shadow: var(--shadow);
         }
 
         .btn-outline {
             background: transparent;
-            border: 1.5px solid var(--primary);
-            color: var(--primary);
+            border: 2px solid var(--accent);
+            color: var(--accent);
             padding: 1rem 2.6rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.15s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
         }
 
         .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(214,64,0,0.02);
+            background: var(--accent);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--accent);
             transform: translateY(-3px);
         }
 
         .hero-right {
             flex: 1 1 400px;
-            background: linear-gradient(145deg, #eae7e2, #ffffff);
-            border-radius: 60px 60px 60px 20px;
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 0 30px var(--accent);
+            border: 1px solid var(--accent);
         }
 
         .hero-right img {
             width: 100%;
             height: auto;
-            border-radius: 48px 48px 48px 16px;
-            box-shadow: 0 30px 30px -20px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
             display: block;
+            filter: hue-rotate(320deg);
         }
 
         /* stats */
         .stats {
             display: flex;
             justify-content: space-around;
-            background: white;
-            border-radius: 100px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 1.8rem 2rem;
             margin: 2rem 0 4rem 0;
             flex-wrap: wrap;
             gap: 1.5rem;
-            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-subtle);
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
+            border: 1px solid var(--accent);
         }
 
         .stat-item {
@@ -340,15 +371,17 @@
         .stat-number {
             font-size: 2.2rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--neon-green);
             line-height: 1.2;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-green);
         }
 
         .stat-label {
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 1.5px;
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
 
         /* section titles */
@@ -357,24 +390,44 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neon-blue));
+            box-shadow: 0 0 10px var(--accent);
         }
 
         .section-sub {
-            color: var(--text-muted);
+            color: var(--cyber-text);
             max-width: 600px;
-            margin-bottom: 3.5rem;
+            margin: 0 auto 3rem;
             font-size: 1.2rem;
+            text-align: center;
         }
 
         /* CLIENTS SECTION */
         .clients-section {
-            background: white;
-            border-radius: 100px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 4rem 2rem;
             margin: 4rem 0;
             text-align: center;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
         }
+
         .clients-grid {
             display: flex;
             flex-wrap: wrap;
@@ -383,6 +436,7 @@
             gap: 3rem 4rem;
             margin-top: 3rem;
         }
+
         .client-item {
             display: flex;
             flex-direction: column;
@@ -392,25 +446,31 @@
             transition: 0.2s;
             cursor: pointer;
         }
+
         .client-item:hover {
             opacity: 1;
             transform: scale(1.05);
+            filter: drop-shadow(0 0 10px var(--accent));
         }
+
         .client-item i {
             font-size: 3rem;
             color: var(--accent);
         }
+
         .client-item span {
             font-weight: 500;
-            color: var(--primary);
+            color: var(--cyber-text);
             font-size: 1.1rem;
         }
+
         .client-item img {
             width: 200px;
-            border-radius: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
         }
 
-        /* service cards (home) */
+        /* service cards */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -419,43 +479,48 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--cyber-gray);
             padding: 2.4rem 2rem;
-            border-radius: 40px;
+            border-radius: 8px;
             transition: 0.2s;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 8px 20px -15px rgba(0,0,0,0.05);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0,255,255,0.2);
             cursor: pointer;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 20px var(--accent);
         }
 
         .service-icon {
             font-size: 2.8rem;
-            color: var(--accent);
+            color: var(--neon-blue);
             margin-bottom: 1.8rem;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .service-card h3 {
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
         }
 
         .service-card p {
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
 
-        /* showcase */
+        /* showcase / portfolio */
         .showcase {
-            background: white;
-            border-radius: 80px 80px 40px 40px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 4rem 0;
             margin: 5rem 0;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(157,0,255,0.3);
         }
 
         .showcase-grid {
@@ -466,28 +531,31 @@
 
         .work-item {
             flex: 1 1 280px;
-            background: var(--bg-light);
-            border-radius: 40px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             overflow: hidden;
             transition: 0.2s;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--neon-pink);
             cursor: pointer;
         }
 
         .work-item:hover {
             transform: scale(1.01);
             border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
         }
 
         .work-img {
             height: 280px;
-            background: #d1cfcb;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #2e2a27;
+            color: white;
             font-weight: 500;
-            background: linear-gradient(135deg, #d4d0c6, #e9e4da);
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px black;
         }
 
         .work-caption {
@@ -498,13 +566,14 @@
             font-size: 1.6rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
+            color: var(--neon-pink);
         }
 
         .work-caption p {
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
 
-        /* PACKAGE / PRICING GRID (UPDATED: no price, button changed) */
+        /* PACKAGE GRID */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -512,25 +581,27 @@
             margin: 3rem 0 4rem;
         }
         .package-card {
-            background: white;
-            border-radius: 40px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 2.5rem 2rem;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--neon-green);
             transition: 0.2s;
             text-align: center;
+            box-shadow: 0 0 10px rgba(0,255,157,0.2);
         }
         .package-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent);
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 20px var(--accent);
         }
         .package-name {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--primary);
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
-        /* price removed */
         .package-features {
             list-style: none;
             margin: 1.8rem 0;
@@ -542,25 +613,31 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
         .package-features i {
-            color: var(--accent);
+            color: var(--neon-green);
             width: 20px;
+            text-shadow: 0 0 5px var(--neon-green);
         }
         .package-cta {
-            background: var(--primary);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
             padding: 1rem 2rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
             transition: 0.15s;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px var(--neon-green);
         }
         .package-cta:hover {
-            background: var(--accent);
+            background: var(--neon-green);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--neon-green);
         }
 
         /* TEAM GRID */
@@ -571,29 +648,32 @@
             margin: 4rem 0;
         }
         .team-member {
-            background: white;
-            border-radius: 40px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 2rem;
             text-align: center;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--neon-pink);
             transition: 0.2s;
             cursor: pointer;
         }
         .team-member:hover {
             transform: translateY(-6px);
             border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
         }
         .team-member i {
             font-size: 4rem;
-            color: var(--accent);
+            color: var(--neon-pink);
             margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-pink);
         }
         .team-member h4 {
             font-size: 1.6rem;
             margin-bottom: 0.3rem;
+            color: var(--neon-blue);
         }
         .team-member p {
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
 
         /* INSIGHTS GRID */
@@ -604,29 +684,32 @@
             margin: 4rem 0;
         }
         .insight-card {
-            background: white;
-            border-radius: 40px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 2rem;
             transition: 0.2s;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--neon-purple);
             cursor: pointer;
         }
         .insight-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
         }
         .insight-card i {
             font-size: 2.5rem;
-            color: var(--accent);
+            color: var(--neon-purple);
             margin-bottom: 1.2rem;
+            text-shadow: 0 0 10px var(--neon-purple);
         }
         .insight-card h3 {
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 0.8rem;
+            color: var(--neon-green);
         }
         .insight-card p {
-            color: var(--text-muted);
+            color: var(--cyber-text);
         }
 
         /* CONTACT PAGE */
@@ -643,25 +726,29 @@
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
         }
         .contact-detail {
             margin: 2rem 0;
         }
         .contact-detail p {
             margin: 1rem 0;
-            color: var(--text-muted);
+            color: var(--cyber-text);
             font-size: 1.2rem;
         }
         .contact-detail i {
             color: var(--accent);
             width: 32px;
+            text-shadow: 0 0 5px var(--accent);
         }
         .contact-form {
             flex: 2 1 400px;
-            background: white;
+            background: var(--cyber-gray);
             padding: 3rem;
-            border-radius: 60px;
-            box-shadow: var(--shadow);
+            border-radius: 8px;
+            box-shadow: 0 0 20px var(--accent);
+            border: 1px solid var(--accent);
         }
         .form-group {
             margin-bottom: 1.8rem;
@@ -670,22 +757,24 @@
             font-weight: 500;
             display: block;
             margin-bottom: 0.5rem;
+            color: var(--neon-green);
         }
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 1rem 1.2rem;
-            background: #f5f3f0;
-            border: 1px solid #e3dfd9;
-            border-radius: 30px;
+            background: #0a0a0f;
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
             font-size: 1rem;
             transition: 0.2s;
+            color: var(--cyber-text);
         }
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(214,64,0,0.1);
+            box-shadow: 0 0 10px var(--accent);
         }
         .form-group textarea {
             min-height: 140px;
@@ -694,14 +783,14 @@
 
         /* CTA section */
         .cta-section {
-            background: var(--primary);
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
             color: white;
-            border-radius: 80px;
+            border-radius: 8px;
             padding: 5rem 4rem;
             margin: 6rem 0;
             text-align: center;
-            background: linear-gradient(145deg, #1e2a2f, #0f171c);
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 30px var(--accent);
+            border: 1px solid var(--accent);
         }
 
         .cta-section h2 {
@@ -709,6 +798,9 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .cta-section .accent-text {
@@ -719,31 +811,35 @@
             font-size: 1.2rem;
             max-width: 500px;
             margin: 2rem auto;
-            opacity: 0.8;
+            opacity: 0.9;
+            color: var(--cyber-text);
         }
 
         .cta-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
             font-size: 1.2rem;
             padding: 1.2rem 3.5rem;
-            border-radius: 60px;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 10px 25px -5px rgba(214, 64, 0, 0.4);
+            box-shadow: 0 0 10px var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
         }
 
         .cta-btn:hover {
-            background: white;
-            color: var(--primary);
+            background: var(--neon-green);
+            color: #0a0a0f;
             transform: translateY(-4px);
+            box-shadow: 0 0 20px var(--neon-green);
         }
 
         /* footer */
         .footer {
-            border-top: 1px solid var(--border-subtle);
+            border-top: 1px solid var(--accent);
             padding: 3rem 0;
             margin-top: 4rem;
             display: flex;
@@ -752,13 +848,14 @@
             gap: 2rem;
         }
 
-        .footer-left .logo {
-            font-size: 2rem;
+        .footer-left .logo-img {
+            height: 70px;
             margin-bottom: 1rem;
+            filter: drop-shadow(0 0 8px var(--accent));
         }
 
         .footer-left p {
-            color: var(--text-muted);
+            color: var(--cyber-text);
             max-width: 280px;
         }
 
@@ -772,11 +869,13 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--neon-pink);
+            font-family: 'Orbitron', sans-serif;
         }
 
         .footer-col a {
             display: block;
-            color: var(--text-muted);
+            color: var(--cyber-text);
             text-decoration: none;
             margin-bottom: 0.8rem;
             transition: 0.1s;
@@ -784,6 +883,7 @@
 
         .footer-col a:hover {
             color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
         }
 
         .social-icons {
@@ -793,7 +893,7 @@
         }
 
         .social-icons a {
-            color: var(--primary);
+            color: var(--neon-blue);
             font-size: 1.6rem;
             transition: 0.1s;
         }
@@ -801,17 +901,19 @@
         .social-icons a:hover {
             color: var(--accent);
             transform: scale(1.1);
+            text-shadow: 0 0 10px var(--accent);
         }
 
         .uk-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0,0,0,0.02);
+            background: rgba(214,64,0,0.1);
             padding: 0.4rem 1rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 400;
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid var(--accent);
+            color: var(--cyber-text);
         }
 
         .uk-badge i {
@@ -826,7 +928,7 @@
             display: block;
         }
 
-        /* MODAL STYLES (two modals now) */
+        /* MODAL STYLES - cyber */
         .modal {
             display: none;
             position: fixed;
@@ -835,7 +937,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
             align-items: center;
             justify-content: center;
@@ -847,12 +949,12 @@
             opacity: 1;
         }
         .modal-content {
-            background: white;
+            background: var(--cyber-gray);
             padding: 2.5rem;
-            border-radius: 60px;
+            border-radius: 8px;
             max-width: 450px;
             width: 90%;
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 30px var(--accent);
             position: relative;
             transform: scale(0.95);
             transition: transform 0.2s ease;
@@ -867,7 +969,7 @@
             right: 1.8rem;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--cyber-text);
             transition: 0.1s;
             line-height: 1;
         }
@@ -878,35 +980,41 @@
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 1.2rem;
+            text-shadow: 0 0 10px var(--accent);
         }
         .modal-title {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.8rem;
             letter-spacing: -0.02em;
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
         }
         .modal-desc {
-            color: var(--text-muted);
+            color: var(--cyber-text);
             font-size: 1.1rem;
             margin-bottom: 1.8rem;
             line-height: 1.5;
         }
         .modal-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
             padding: 0.8rem 2rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.15s;
             width: 100%;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px var(--neon-green);
         }
         .modal-btn:hover {
-            background: var(--accent);
+            background: var(--neon-green);
+            color: #0a0a0f;
         }
 
-        /* new contact freelancer modal form */
+        /* freelancer modal form */
         .freelancer-form {
             display: flex;
             flex-direction: column;
@@ -920,39 +1028,44 @@
         .form-row label {
             font-weight: 600;
             margin-bottom: 0.3rem;
-            color: var(--primary);
+            color: var(--neon-green);
         }
         .form-row input {
             padding: 1rem;
-            border-radius: 40px;
-            border: 1px solid var(--border-subtle);
-            background: #f5f3f0;
+            border-radius: 4px;
+            border: 1px solid var(--neon-blue);
+            background: #0a0a0f;
             font-size: 1rem;
+            color: var(--cyber-text);
         }
         .form-row input:focus {
             outline: 2px solid var(--accent);
         }
         .freelancer-submit {
-            background: var(--accent);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
             padding: 1rem;
-            border-radius: 40px;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.15s;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
         }
         .freelancer-submit:hover {
-            background: var(--primary);
+            background: var(--accent);
+            color: #0a0a0f;
         }
 
-        /* about section (new) */
+        /* about section */
         .about-section {
-            background: white;
-            border-radius: 100px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
             padding: 4rem 3rem;
             margin: 4rem 0;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
         }
         .about-content {
             max-width: 900px;
@@ -960,7 +1073,7 @@
         }
         .about-content p {
             font-size: 1.2rem;
-            color: var(--text-muted);
+            color: var(--cyber-text);
             margin-bottom: 1.8rem;
             line-height: 1.6;
         }
@@ -970,8 +1083,10 @@
         .founder-name {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--neon-blue);
             margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
         .founder-name span {
             color: var(--accent);
@@ -992,7 +1107,7 @@
                 font-size: 2.8rem;
             }
             .stats {
-                border-radius: 40px;
+                border-radius: 8px;
             }
             .rotating-words {
                 min-width: 160px;
@@ -1001,7 +1116,7 @@
     </style>
 </head>
 <body>
-    <!-- MODAL for generic info (kept for other clicks) -->
+    <!-- MODAL for generic info -->
     <div id="customModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">&times;</span>
@@ -1012,7 +1127,7 @@
         </div>
     </div>
 
-    <!-- NEW MODAL for freelancer contact form -->
+    <!-- MODAL for freelancer contact form -->
     <div id="freelancerModal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <span class="modal-close" id="freelancerModalClose">&times;</span>
@@ -1042,9 +1157,10 @@
         </div>
     </div>
 
-    <!-- navigation with dropdown -->
+    <!-- navigation with dropdown & IMAGE LOGO -->
     <nav class="navbar">
-        <div class="logo" id="logo">WIX UI<span class="logo-dot">.</span></div>
+        <img src="./image/wixui-logo.png" alt="WIX UI logo" class="logo-img" id="logo">
+
         <div class="nav-links">
             <a href="#" class="nav-link" data-page="home">Home</a>
             <!-- SERVICES DROPDOWN -->
@@ -1091,17 +1207,17 @@
                     </div>
                 </div>
                 <div class="hero-right">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%23eae2d7'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2311181c' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2311181c' stroke-width='8' /%3E%3C/svg%3E" alt="WIX UI abstract design" style="width:100%;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%231a1a2e'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2300ffff' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2300ffff' stroke-width='8' /%3E%3C/svg%3E" alt="WIX UI abstract design" style="width:100%;">
                 </div>
             </section>
 
-            <!-- **** NEW ABOUT US SECTION (as requested) **** -->
+            <!-- ABOUT US SECTION -->
             <div class="about-section">
                 <div class="about-content">
                     <div class="founder-name">About <span>Wix UI</span></div>
                     <p><strong>Wix UI</strong> is an IT consultant freelancer belonging to Taoheed Ogundapo, a highly motivated and well organized individual with over <strong>23 years’ experience</strong> in Software Design, Web/Graphic Design, UX/UI Design & as a Database Administrator in both National and International Environments with good understanding and work experience in Private and Governmental Departments, as well as United Nations Systems.</p>
 
-                    <div class="founder-name">About <span>Taoheed Ogundapo</span></div>
+                    <div class="founder-name">About <span>The founder</span></div>
                     
                     <p>A Computer Science graduate with experience in developing, implementing and managing websites, as well as proven skills in developing and maintaining database and applications.</p>
                     
@@ -1131,14 +1247,14 @@
 
                     <div class="client-item">
                         <div>
-                            <img src="https://placehold.co/200x100/11181c/white?text=IWO" alt="iwo-logo">
+                            <img src="https://placehold.co/200x100/00ffff/black?text=IWO" alt="iwo-logo">
                         </div>
                         <span>Iwo Land</span>
                     </div>
 
                     <div class="client-item">
                         <div>
-                            <img src="https://placehold.co/200x100/d64000/white?text=HCA" alt="hca-logo">
+                            <img src="https://placehold.co/200x100/ff00ff/white?text=HCA" alt="hca-logo">
                         </div>
                         <span>HCA</span>
                     </div>
@@ -1148,7 +1264,7 @@
             
         </div>
 
-        <!-- SERVICE PAGES with PACKAGES - updated buttons and no prices -->
+        <!-- SERVICE PAGES with PACKAGES -->
         <!-- Website design -->
         <div id="webdesign" class="page">
             <section style="padding: 3rem 0;">
@@ -1336,9 +1452,9 @@
                         <p>Strategy & CRO</p>
                     </div>
                 </div>
-                <div style="background: white; border-radius: 80px; padding: 3rem; margin: 4rem 0;">
-                    <h2 style="font-size: 2rem;">⭐ Our manifesto</h2>
-                    <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention.</p>
+                <div style="background: var(--cyber-gray); border-radius: 8px; padding: 3rem; margin: 4rem 0; border: 1px solid var(--neon-purple);">
+                    <h2 style="font-size: 2rem; color: var(--neon-purple);">⭐ Our manifesto</h2>
+                    <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto; color: var(--cyber-text);">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention.</p>
                 </div>
             </section>
         </div>
@@ -1376,8 +1492,8 @@
                         <h3>We reply within hours, not days.</h3>
                         <div class="contact-detail">
                             <p><i class="fa-solid fa-envelope"></i> hello@wixui.co.uk</p>
-                            <p><i class="fa-solid fa-phone"></i> +44 161 123 4567</p>
-                            <p><i class="fa-solid fa-location-dot"></i> 42 Barbican, London / 42 Deansgate, Manchester</p>
+                            <p><i class="fa-solid fa-phone"></i> +44 7950 967561</p>
+                            <p><i class="fa-solid fa-location-dot"></i> 28 Woods Road, London SE15 2SW</p>
                         </div>
                     </div>
                     <div class="contact-form">
@@ -1408,11 +1524,17 @@
             <button class="cta-btn">👉  Start your project  👈</button>
         </section>
 
-        <!-- footer -->
+        <!-- footer with image logo -->
         <footer class="footer">
             <div class="footer-left">
-                <div class="logo">WIX UI<span class="logo-dot">.</span></div>
+                <img src="./image/wixui-logo.png" alt="WIX UI logo" class="logo-img">
                 <p>Bespoke websites for the bold. Proudly built in the UK.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-behance"></i></a>
+                </div>
             </div>
             <div class="footer-right">
                 <div class="footer-col">
@@ -1433,7 +1555,7 @@
                 </div>
             </div>
         </footer>
-        <div style="text-align: center; padding: 1.5rem 0; color: #888;">© 2026 WIX UI — Websites with swagger.</div>
+        <div style="text-align: center; padding: 1.5rem 0; color: var(--cyber-text); border-top: 1px solid var(--accent);">© 2026 WIX UI — Websites with swagger.</div>
     </main>
 
     <script>
@@ -1558,7 +1680,6 @@
             // attach generic modal to any element with data-modal-* attributes (except buttons)
             document.querySelectorAll('[data-modal-icon]').forEach(el => {
                 el.addEventListener('click', (e) => {
-                    // if the clicked element is inside a button, ignore to avoid double triggers
                     if (e.target.closest('button')) return;
                     const icon = el.dataset.modalIcon;
                     const title = el.dataset.modalTitle;
