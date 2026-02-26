@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIX UI · bespoke websites in the UK</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #1e1b1b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #11181c;
+            --accent: #d64000;
+            --accent-light: #ff5c1a;
+            --bg-light: #faf9f7;
+            --text-muted: #4b4b4b;
+            --border-subtle: rgba(0,0,0,0.05);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 5%;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background-color: rgba(250, 249, 247, 0.85);
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+        }
+
+        .logo-dot {
+            color: var(--accent);
+            font-size: 2.2rem;
+            margin-left: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 1rem;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            transform: scale(1.02);
+            border-bottom: none !important;
+        }
+
+        /* main container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 5rem 0 6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4rem;
+        }
+
+        .hero-left {
+            flex: 1 1 400px;
+        }
+
+        .hero-badge {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(214, 64, 0, 0.08);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-left h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        /* rotating word animation */
+        .rotating-words {
+            display: inline-block;
+            min-width: 200px;
+            position: relative;
+            color: var(--accent);
+            border-bottom: 4px solid rgba(214, 64, 0, 0.25);
+            white-space: nowrap;
+            vertical-align: middle;
+            text-align: left;
+            height: 1.2em;            
+            margin: 0 4px;
+        }
+
+        .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: rotateWords 9s infinite;
+            position: absolute;
+            left: 0;
+            top: 0;                    
+            width: 100%;
+            text-align: left;
+        }
+
+        .word:nth-child(1) { animation-delay: 0s; }
+        .word:nth-child(2) { animation-delay: 3s; }
+        .word:nth-child(3) { animation-delay: 6s; }
+
+        @keyframes rotateWords {
+            0%, 30% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            5%, 25% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            33.33%, 100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-left p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 18px -8px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 1rem 2.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(214,64,0,0.02);
+            transform: translateY(-3px);
+        }
+
+        .hero-right {
+            flex: 1 1 400px;
+            background: linear-gradient(145deg, #eae7e2, #ffffff);
+            border-radius: 60px 60px 60px 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 48px 48px 48px 16px;
+            box-shadow: 0 30px 30px -20px rgba(0,0,0,0.2);
+            display: block;
+        }
+
+        /* interactive stats / trust row */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            border-radius: 100px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 4rem 0;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: 0.15s;
+            cursor: default;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+        }
+
+        /* services section */
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3.5rem;
+            font-size: 1.2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.4rem 2rem;
+            border-radius: 40px;
+            transition: 0.2s;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 8px 20px -15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+        }
+
+        /* portfolio / featured work */
+        .showcase {
+            background: white;
+            border-radius: 80px 80px 40px 40px;
+            padding: 4rem 0;
+            margin: 5rem 0;
+        }
+
+        .showcase-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .work-item {
+            flex: 1 1 280px;
+            background: var(--bg-light);
+            border-radius: 40px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+        }
+
+        .work-item:hover {
+            transform: scale(1.01);
+            border-color: var(--accent);
+        }
+
+        .work-img {
+            height: 280px;
+            background: #d1cfcb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2e2a27;
+            font-weight: 500;
+            background: linear-gradient(135deg, #d4d0c6, #e9e4da);
+        }
+
+        .work-caption {
+            padding: 1.8rem;
+        }
+
+        .work-caption h4 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .work-caption p {
+            color: var(--text-muted);
+        }
+
+        /* WORK PAGE SPECIFIC */
+        .work-grid-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .work-card {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+        }
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+        .work-card-img {
+            height: 260px;
+            background: #dbd6cf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #cdc8bf, #e7e1d8);
+            color: #3b352f;
+            font-size: 3rem;
+        }
+        .work-card-content {
+            padding: 2rem;
+        }
+        .work-card-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .work-card-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+        .work-tag {
+            display: inline-block;
+            background: rgba(214,64,0,0.08);
+            color: var(--accent);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.6rem;
+        }
+
+        /* TEAM GRID */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .team-member {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .team-member:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+        }
+        .team-member i {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .team-member h4 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .team-member p {
+            color: var(--text-muted);
+        }
+
+        /* INSIGHTS GRID (full) */
+        .insights-grid-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .insight-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            transition: 0.2s;
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+        }
+        .insight-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .insight-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+        }
+        .insight-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .insight-card p {
+            color: var(--text-muted);
+        }
+
+        /* CONTACT PAGE */
+        .contact-grid {
+            display: flex;
+            gap: 4rem;
+            margin: 4rem 0 6rem;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1 1 280px;
+        }
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .contact-detail {
+            margin: 2rem 0;
+        }
+        .contact-detail p {
+            margin: 1rem 0;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        .contact-detail i {
+            color: var(--accent);
+            width: 32px;
+        }
+        .contact-form {
+            flex: 2 1 400px;
+            background: white;
+            padding: 3rem;
+            border-radius: 60px;
+            box-shadow: var(--shadow);
+        }
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: #f5f3f0;
+            border: 1px solid #e3dfd9;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(214,64,0,0.1);
+        }
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            border-radius: 80px;
+            padding: 5rem 4rem;
+            margin: 6rem 0;
+            text-align: center;
+            background: linear-gradient(145deg, #1e2a2f, #0f171c);
+            box-shadow: var(--shadow);
+        }
+
+        .cta-section h2 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section .accent-text {
+            color: var(--accent);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            padding: 1.2rem 3.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(214, 64, 0, 0.4);
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        /* footer */
+        .footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-left .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-left p {
+            color: var(--text-muted);
+            max-width: 280px;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: 0.1s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .social-icons a {
+            color: var(--primary);
+            font-size: 1.6rem;
+            transition: 0.1s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* uk badge */
+        .uk-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.02);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 400;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .uk-badge i {
+            color: var(--accent);
+        }
+
+        /* page visibility */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* MODAL STYLES - clean, custom, sexy */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 60px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
+            border: 2px solid var(--accent);
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.8rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.1s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+        }
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
+        }
+        .modal-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.5;
+        }
+        .modal-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+            width: 100%;
+        }
+        .modal-btn:hover {
+            background: var(--accent);
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 5%;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+            .stats {
+                border-radius: 40px;
+            }
+            .rotating-words {
+                min-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MODAL (single instance, dynamically updated) -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-crown"></i></div>
+            <div class="modal-title" id="modalTitle">Service detail</div>
+            <div class="modal-desc" id="modalDesc">We run discovery workshops, user testing, and prototyping to craft intuitive experiences.</div>
+            <button class="modal-btn" id="modalAction">Got it</button>
+        </div>
+    </div>
+
+    <!-- navigation -->
+    <nav class="navbar">
+        <div class="logo" id="logo" >
+            WIX UI<span class="logo-dot">.</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link" data-page="home">Work</a>
+            <a href="#" class="nav-link" data-page="studio">Studio</a>
+            <a href="#" class="nav-link" data-page="insights">Insights</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
+        </div>
+        <a href="#" class="nav-cta" id="globalCta">Start a project <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
+    </nav>
+
+    <main class="container">
+        <!-- HOME PAGE (default active) -->
+        <div id="home" class="page active">
+            <!-- hero with rotating words -->
+            <section class="hero">
+                <div class="hero-left">
+                    <span class="hero-badge"><i class="fa-solid fa-flag-uk" style="margin-right: 6px;"></i>  based in London & Manchester</span>
+                    <h1>
+                        Websites with 
+                        <span class="rotating-words">
+                            <span class="word">attitude</span>
+                            <span class="word">swagger</span>
+                            <span class="word">edge</span>
+                        </span>
+                        , built in the UK
+                    </h1>
+                    <p>We're WIX UI — we craft digital experiences that convert, provoke, and seduce. No templates, just bespoke code & award‑winning design.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-primary" id="homeToWork">See our work <i class="fa-regular fa-eye" style="margin-left: 8px;"></i></a>
+                        <a href="#" class="btn-outline" id="homeToContact">Let's talk <i class="fa-regular fa-message" style="margin-left: 8px;"></i></a>
+                    </div>
+                    <!-- uk trust badge -->
+                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                        <span class="uk-badge"><i class="fa-solid fa-circle-check"></i> 100% UK team</span>
+                        <span class="uk-badge"><i class="fa-solid fa-trophy"></i> 48+ awards</span>
+                        <span class="uk-badge"><i class="fa-solid fa-clock"></i> 2‑week delivery</span>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <!-- abstract modern image -->
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%23eae2d7'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2311181c' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2311181c' stroke-width='8' /%3E%3C/svg%3E"
+                         alt="WIX UI abstract design" style="width:100%;">
+                </div>
+            </section>
+
+            <!-- stat strip -->
+            <div class="stats">
+                <div class="stat-item"><span class="stat-number">14+</span> <span class="stat-label">years</span></div>
+                <div class="stat-item"><span class="stat-number">320</span> <span class="stat-label">websites</span></div>
+                <div class="stat-item"><span class="stat-number">100%</span> <span class="stat-label">UK based</span></div>
+                <div class="stat-item"><span class="stat-number">8.7s</span> <span class="stat-label">avg. response</span></div>
+            </div>
+
+            <!-- services -->
+            <section style="margin: 5rem 0;">
+                <h2 class="section-title">We don't do <br>“just another website”.</h2>
+                <div class="section-sub">Every line of code is crafted for speed, seduction, and SEO — because your business deserves the best.</div>
+                <div class="services-grid">
+                    <div class="service-card" data-modal-icon="fa-crown" data-modal-title="Bespoke UX" data-modal-desc="We run discovery workshops, user testing, and prototyping. Every interface is tailored to your audience, resulting in intuitive experiences that keep users coming back.">
+                        <div class="service-icon"><i class="fa-solid fa-crown"></i></div>
+                        <h3>Bespoke UX</h3>
+                        <p>Interfaces that feel intuitive yet unexpected. We study your users and deliver pleasure.</p>
+                    </div>
+                    <div class="service-card" data-modal-icon="fa-bolt" data-modal-title="Lightning code" data-modal-desc="Hand-coded with performance in mind: sub‑2s loads, fully accessible, and no bloat. We don't use page builders — ever.">
+                        <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>lightning code</h3>
+                        <p>No bloat, no page builders. Just clean HTML/CSS/JS that loads in a blink.</p>
+                    </div>
+                    <div class="service-card" data-modal-icon="fa-magnifying-glass-chart" data-modal-title="Conversion first" data-modal-desc="We A/B test, analyse heatmaps, and optimise every button. Our designs are built to maximise ROI — not just to look pretty.">
+                        <div class="service-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3>Conversion first</h3>
+                        <p>We design to sell. Every button, colour and micro‑copy is tested for ROI.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- showcase -->
+            <div class="showcase" id="showcase">
+                <div style="padding: 0 5%;">
+                    <h2 class="section-title" style="margin-bottom: 0.5rem;">Selected <span style="color: var(--accent);">sorcery</span></h2>
+                    <div class="section-sub">Recent projects that made our clients very happy (and rich).</div>
+                </div>
+                <div style="padding: 2rem 5% 0;">
+                    <div class="showcase-grid">
+                        <div class="work-item" data-modal-icon="fa-display" data-modal-title="BARE KNUCKLE" data-modal-desc="E‑commerce for a fashion brand: 340% revenue increase, 2.3s load time, and a 150% boost in mobile conversions.">
+                            <div class="work-img"><i class="fa-solid fa-display" style="font-size: 4rem; opacity: 0.4;"></i></div>
+                            <div class="work-caption">
+                                <h4>BARE KNUCKLE</h4>
+                                <p>e‑comm · fashion</p>
+                            </div>
+                        </div>
+                        <div class="work-item" data-modal-icon="fa-chart-simple" data-modal-title="FINANCE LAB" data-modal-desc="Fintech dashboard used by 50k+ investors. 99.9% uptime, real‑time data, and a 40% increase in user retention.">
+                            <div class="work-img"><i class="fa-solid fa-chart-simple" style="font-size: 4rem; opacity: 0.4;"></i></div>
+                            <div class="work-caption">
+                                <h4>FINANCE LAB</h4>
+                                <p>fintech dashboard</p>
+                            </div>
+                        </div>
+                        <div class="work-item" data-modal-icon="fa-martini-glass" data-modal-title="SHOREDITSH HOUSE" data-modal-desc="Membership site for a private club. Bookings up 78%, member satisfaction score 4.9/5, and fully integrated CRM.">
+                            <div class="work-img"><i class="fa-solid fa-martini-glass" style="font-size: 4rem; opacity: 0.4;"></i></div>
+                            <div class="work-caption">
+                                <h4>SHOREDITSH HOUSE</h4>
+                                <p>membership · lifestyle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end home -->
+
+        <!-- STUDIO PAGE (FULL CONTENT) -->
+        <div id="studio" class="page">
+            <section style="padding: 4rem 0;">
+                <h1 class="section-title">We are <span style="color:var(--accent);">WIX UI</span></h1>
+                <p class="section-sub" style="margin-left: auto; margin-right: auto; max-width: 700px;">A tight‑knit crew of designers, developers, and digital strategists based in Manchester and London. We’ve been crafting award‑winning digital experiences since 2011.</p>
+                
+                <!-- team grid -->
+                <div class="team-grid">
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Alex Mercer" data-modal-desc="Founder & Creative director. 14 years shaping digital brands. Previously led design at Wolff Olins.">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Alex Mercer</h4>
+                        <p>Founder / Creative director</p>
+                    </div>
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Priya Kapoor" data-modal-desc="Lead developer, accessibility & performance nerd. 10 years full‑stack, passionate about inclusive design.">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Priya Kapoor</h4>
+                        <p>Lead developer</p>
+                    </div>
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Joe Higgins" data-modal-desc="UX director. Loves user research and micro‑interactions. Previously at ustwo.">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Joe Higgins</h4>
+                        <p>UX director</p>
+                    </div>
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Lily MacKenzie" data-modal-desc="Strategy & CRO. Data‑obsessed conversion expert. Runs our analytics and experimentation.">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Lily MacKenzie</h4>
+                        <p>Strategy & CRO</p>
+                    </div>
+                </div>
+
+                <!-- extended culture / manifesto -->
+                <div style="background: white; border-radius: 80px; padding: 3rem; margin: 4rem 0;">
+                    <h2 style="font-size: 2rem; margin-bottom: 2rem;">⭐ Our manifesto</h2>
+                    <p style="font-size: 1.2rem; max-width: 800px; margin-bottom: 1.5rem;">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention, every pixel placed with purpose.</p>
+                    <p style="font-size: 1.2rem; max-width: 800px;">We’re 100% independent and 100% UK‑based. Our clients become long‑term partners.</p>
+                    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 3rem 0;">
+                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-people-group"></i> 12 experts</span>
+                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-trophy"></i> 48 awards</span>
+                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-clock"></i> 14+ years</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- INSIGHTS PAGE (FULL CONTENT) -->
+        <div id="insights" class="page">
+            <section style="padding: 4rem 0;">
+                <h1 class="section-title">Insights & <span style="color:var(--accent)">attitude</span></h1>
+                <p class="section-sub" style="max-width: 700px;">Thoughts on design, code, and digital culture from the WIX UI team.</p>
+                
+                <div class="insights-grid-full">
+                    <div class="insight-card" data-modal-icon="fa-newspaper" data-modal-title="Headless commerce" data-modal-desc="Why UK brands are switching to headless: faster sites, better scalability, and improved CX. We break down the data.">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <h3>Headless commerce</h3>
+                        <p>The future of UK e‑com: why speed and flexibility matter more than ever.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-gem" data-modal-title="Design with swagger" data-modal-desc="Our 5‑step framework for creating interfaces that sell without screaming. Hint: it's all about psychology.">
+                        <i class="fa-regular fa-gem"></i>
+                        <h3>Design with swagger</h3>
+                        <p>How we create interfaces that sell without screaming.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-clock" data-modal-title="8.7s response" data-modal-desc="Our client obsession, quantified. How we reply faster than any agency (and why it matters).">
+                        <i class="fa-regular fa-clock"></i>
+                        <h3>8.7s response</h3>
+                        <p>Our client obsession, quantified. How we reply faster than any agency.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-code" data-modal-title="No‑code myth" data-modal-desc="Why custom code still outperforms every page builder: performance, flexibility, and future‑proofing.">
+                        <i class="fa-regular fa-code"></i>
+                        <h3>No‑code myth</h3>
+                        <p>Why custom code still outperforms every page builder (data inside).</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-face-smile" data-modal-title="Persuasive UX" data-modal-desc="The psychological principles behind high‑converting interfaces: reciprocity, scarcity, and social proof.">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <h3>Persuasive UX</h3>
+                        <p>The psychological principles behind high‑converting interfaces.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-building" data-modal-title="North / South" data-modal-desc="How we stay collaborative across two cities (and remote). Spoiler: lots of Notion and spontaneous voice notes.">
+                        <i class="fa-regular fa-building"></i>
+                        <h3>North / South</h3>
+                        <p>How we stay collaborative across two cities (and remote).</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE (FULL CONTENT) -->
+        <div id="contact" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">Let’s <span style="color:var(--accent);">talk</span></h1>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>We reply within hours, not days.</h3>
+                        <div class="contact-detail">
+                            <p><i class="fa-solid fa-envelope"></i> hello@wixui.co.uk</p>
+                            <p><i class="fa-solid fa-phone"></i> +44 161 123 4567</p>
+                            <p><i class="fa-solid fa-location-dot"></i> 42 Barbican, London / 42 Deansgate, Manchester</p>
+                        </div>
+                        <div class="social-icons" style="margin-top: 2rem;">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <!-- additional contact reasons -->
+                        <div style="margin-top: 3rem;">
+                            <h4>✨ Let’s chat about</h4>
+                            <ul style="list-style: none; margin-top:1rem;">
+                                <li style="margin-bottom:0.6rem;">→ New website or redesign</li>
+                                <li style="margin-bottom:0.6rem;">→ Conversion optimisation</li>
+                                <li style="margin-bottom:0.6rem;">→ Brand & digital strategy</li>
+                                <li style="margin-bottom:0.6rem;">→ Retainer / ongoing support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="demoContactForm" onsubmit="event.preventDefault(); showModal('fa-paper-plane', 'Message sent', '✨ Thanks for reaching out (demo). We’ll get back to you within 8.7 seconds (figuratively).');">
+                            <div class="form-group">
+                                <label>Full name</label>
+                                <input type="text" placeholder="Jamie Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="hello@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="border: none; width: 100%;">Send message <i class="fa-regular fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- sexy call to action (visible on all pages) -->
+        <section class="cta-section">
+            <h2>Ready to <span class="accent-text">seduce</span> your audience?</h2>
+            <p>Join the UK brands that trust WIX UI to build websites that work as hard as they do.</p>
+            <button class="cta-btn" onclick="showModal('fa-rocket', 'Start your project', '🚀 We’re ready when you are. Drop us a line via the contact page and we’ll kick things off.');">👉  Start your project  👈</button>
+            <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.6;">📍 Manchester · London · remote UK</div>
+        </section>
+
+        <!-- footer (global) -->
+        <footer class="footer">
+            <div class="footer-left">
+                <div class="logo" id="logo">WIX UI<span class="logo-dot">.</span></div>
+                <p>Bespoke websites for the bold. Proudly built in the UK.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-behance"></i></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-col">
+                    <h5>Studio</h5>
+                    <a href="#" class="nav-link" data-page="studio">Work</a>
+                    <a href="#" class="nav-link" data-page="studio">People</a>
+                    <a href="#" class="nav-link" data-page="studio">Careers</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <a href="#">Design</a>
+                    <a href="#">Development</a>
+                    <a href="#">CRO</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="#" class="nav-link" data-page="contact">hello@wixui.co.uk</a>
+                    <a href="#" class="nav-link" data-page="contact">+44 161 123 4567</a>
+                    <a href="#" class="nav-link" data-page="contact">@wixui</a>
+                </div>
+            </div>
+        </footer>
+        <!-- subtle copyright -->
+        <div style="text-align: center; padding: 1.5rem 0 2.5rem; color: #888; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.02);">
+            © 2025 WIX UI — Websites with swagger. All rights reserved.
+        </div>
+    </main>
+
+    <!-- page switching + modal logic -->
+    <script>
+        (function() {
+            // page switching logic
+            const pages = {
+                home: document.getElementById('home'),
+                studio: document.getElementById('studio'),
+                insights: document.getElementById('insights'),
+                contact: document.getElementById('contact')
+            };
+
+            function showPage(pageId) {
+                Object.values(pages).forEach(p => p.classList.remove('active'));
+                if (pages[pageId]) pages[pageId].classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) link.classList.add('active');
+                });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.dataset.page;
+                    if (page) showPage(page);
+                });
+            });
+
+            document.getElementById('homeToWork')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('studio');
+            });
+            document.getElementById('homeToContact')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('contact');
+            });
+
+            document.querySelectorAll('#logo').forEach(logo => {
+                logo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home');
+                });
+            });
+
+            document.getElementById('globalCta').addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('contact');
+            });
+
+            // stat hover effect (just for fun)
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.05)';
+                    item.style.transition = '0.15s';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                });
+            });
+
+            // ---------- MODAL SYSTEM ----------
+            const modal = document.getElementById('customModal');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalClose = document.getElementById('modalClose');
+            const modalAction = document.getElementById('modalAction');
+
+            window.showModal = (icon, title, desc) => {
+                modalIcon.innerHTML = `<i class="fa-solid ${icon}"></i>`;
+                modalTitle.innerText = title;
+                modalDesc.innerText = desc;
+                modal.classList.add('show');
+            };
+
+            function closeModal() {
+                modal.classList.remove('show');
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modalAction.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // attach modal triggers to cards with data attributes
+            document.querySelectorAll('[data-modal-icon]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    const icon = el.dataset.modalIcon;
+                    const title = el.dataset.modalTitle;
+                    const desc = el.dataset.modalDesc;
+                    if (icon && title && desc) {
+                        showModal(icon, title, desc);
+                    }
+                });
+            });
+
+            // initial page
+            showPage('home');
+        })();
+    </script>
+</body>
+</html>
