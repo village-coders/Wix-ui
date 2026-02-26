@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WIX UI · bespoke websites in the UK</title>
+    <link rel="shortcut icon" href="./image/wixui-favicon.png" type="image/x-icon">
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cyberpunk / tech fonts -->
@@ -22,9 +23,96 @@
             scroll-behavior: smooth;
             font-family: 'Exo 2', sans-serif;
             background-image: 
-                linear-gradient(rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.9)),
+                linear-gradient(rgba(10, 10, 15, 0.92), rgba(10, 10, 15, 0.92)),
                 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0f"/><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="%23d64000" stroke-width="0.5" fill="none"/></svg>');
             background-size: 100px;
+            position: relative;
+        }
+
+        /* Scan line effect */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: scan 8s linear infinite;
+            z-index: 1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Particles canvas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-blue), transparent);
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            animation: float-1 20s infinite linear;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation: float-2 25s infinite linear reverse;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 15%;
+            animation: float-3 30s infinite linear;
+        }
+
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-80px, 40px) rotate(120deg); }
+            66% { transform: translate(40px, -60px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes float-3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -30px) scale(1.2); }
+            100% { transform: translate(0, 0) scale(1); }
         }
 
         :root {
@@ -182,6 +270,8 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 5%;
+            position: relative;
+            z-index: 2;
         }
 
         /* hero section */
@@ -1116,6 +1206,14 @@
     </style>
 </head>
 <body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
     <!-- MODAL for generic info -->
     <div id="customModal" class="modal">
         <div class="modal-content">
@@ -1558,7 +1656,44 @@
         <div style="text-align: center; padding: 1.5rem 0; color: var(--cyber-text); border-top: 1px solid var(--accent);">© 2026 WIX UI — Websites with swagger.</div>
     </main>
 
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <script>
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#00ffff", "#ff00ff", "#9d00ff", "#00ff9d"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#d64000",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+
         (function() {
             const pages = {
                 home: document.getElementById('home'),
