@@ -114,7 +114,7 @@
             min-width: 240px;
             box-shadow: var(--shadow);
             border-radius: 30px;
-            padding: 1.2rem 0;
+            padding: 1.2rem 1rem;
             z-index: 200;
             border: 1px solid var(--border-subtle);
         }
@@ -131,6 +131,7 @@
 
         .dropdown-content a:hover {
             background: rgba(214,64,0,0.05);
+            border-radius: 15px;
             color: var(--accent);
         }
 
@@ -365,6 +366,50 @@
             font-size: 1.2rem;
         }
 
+        /* CLIENTS SECTION */
+        .clients-section {
+            background: white;
+            border-radius: 100px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+        }
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem 4rem;
+            margin-top: 3rem;
+        }
+        .client-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.8;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .client-item:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .client-item i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+        .client-item span {
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .client-item img {
+            width: 200px;
+            border-radius: 20px;
+        }
+
         /* service cards (home) */
         .services-grid {
             display: grid;
@@ -459,7 +504,7 @@
             color: var(--text-muted);
         }
 
-        /* PACKAGE / PRICING GRID (used in service pages) */
+        /* PACKAGE / PRICING GRID (UPDATED: no price, button changed) */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -473,7 +518,6 @@
             border: 1px solid var(--border-subtle);
             transition: 0.2s;
             text-align: center;
-            cursor: pointer;
         }
         .package-card:hover {
             transform: translateY(-8px);
@@ -486,17 +530,7 @@
             margin-bottom: 1rem;
             color: var(--primary);
         }
-        .package-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-        .package-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
+        /* price removed */
         .package-features {
             list-style: none;
             margin: 1.8rem 0;
@@ -792,7 +826,7 @@
             display: block;
         }
 
-        /* MODAL STYLES */
+        /* MODAL STYLES (two modals now) */
         .modal {
             display: none;
             position: fixed;
@@ -872,6 +906,77 @@
             background: var(--accent);
         }
 
+        /* new contact freelancer modal form */
+        .freelancer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .form-row label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+        }
+        .form-row input {
+            padding: 1rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-subtle);
+            background: #f5f3f0;
+            font-size: 1rem;
+        }
+        .form-row input:focus {
+            outline: 2px solid var(--accent);
+        }
+        .freelancer-submit {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .freelancer-submit:hover {
+            background: var(--primary);
+        }
+
+        /* about section (new) */
+        .about-section {
+            background: white;
+            border-radius: 100px;
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border: 1px solid var(--border-subtle);
+        }
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+        .about-content strong {
+            color: var(--accent);
+        }
+        .founder-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .founder-name span {
+            color: var(--accent);
+        }
+
         @media (max-width: 700px) {
             .navbar {
                 flex-direction: column;
@@ -896,7 +1001,7 @@
     </style>
 </head>
 <body>
-    <!-- MODAL (single instance) -->
+    <!-- MODAL for generic info (kept for other clicks) -->
     <div id="customModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">&times;</span>
@@ -904,6 +1009,36 @@
             <div class="modal-title" id="modalTitle">Service detail</div>
             <div class="modal-desc" id="modalDesc">Information goes here.</div>
             <button class="modal-btn" id="modalAction">Got it</button>
+        </div>
+    </div>
+
+    <!-- NEW MODAL for freelancer contact form -->
+    <div id="freelancerModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="modal-close" id="freelancerModalClose">&times;</span>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
+                <div class="modal-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="modal-title" id="freelancerModalTitle">Contact a freelancer</div>
+            </div>
+            <div class="freelancer-form">
+                <div class="form-row">
+                    <label>Service</label>
+                    <input type="text" id="freelancerService" readonly value="Website design">
+                </div>
+                <div class="form-row">
+                    <label>Package</label>
+                    <input type="text" id="freelancerPackage" readonly value="Essentials">
+                </div>
+                <div class="form-row">
+                    <label>Your name</label>
+                    <input type="text" id="freelancerName" placeholder="e.g. Jamie Smith">
+                </div>
+                <div class="form-row">
+                    <label>Preferred date</label>
+                    <input type="date" id="freelancerDate">
+                </div>
+                <button class="freelancer-submit" id="freelancerSubmitBtn">Send request</button>
+            </div>
         </div>
     </div>
 
@@ -959,53 +1094,96 @@
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%23eae2d7'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2311181c' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2311181c' stroke-width='8' /%3E%3C/svg%3E" alt="WIX UI abstract design" style="width:100%;">
                 </div>
             </section>
+
+            <!-- **** NEW ABOUT US SECTION (as requested) **** -->
+            <div class="about-section">
+                <div class="about-content">
+                    <div class="founder-name">About <span>Wix UI</span></div>
+                    <p><strong>Wix UI</strong> is an IT consultant freelancer belonging to Taoheed Ogundapo, a highly motivated and well organized individual with over <strong>23 years’ experience</strong> in Software Design, Web/Graphic Design, UX/UI Design & as a Database Administrator in both National and International Environments with good understanding and work experience in Private and Governmental Departments, as well as United Nations Systems.</p>
+
+                    <div class="founder-name">About <span>Taoheed Ogundapo</span></div>
+                    
+                    <p>A Computer Science graduate with experience in developing, implementing and managing websites, as well as proven skills in developing and maintaining database and applications.</p>
+                    
+                    <p>As a Software Administrator, he strives to convey a client's message to the target audience through distinctive graphic, animation and the web. From corporate publications and online marketing email network, to colourful magazine layouts; from creating unique identity marks to festival and event promotions; from books to corporate web sites. He has solid expertise in bringing different IT freelancers together to work on projects and needs of individuals and companies.</p>
+                </div>
+            </div>
+
+            <!-- STATS -->
             <div class="stats">
                 <div class="stat-item"><span class="stat-number">14+</span> <span class="stat-label">years</span></div>
                 <div class="stat-item"><span class="stat-number">320</span> <span class="stat-label">websites</span></div>
                 <div class="stat-item"><span class="stat-number">100%</span> <span class="stat-label">UK based</span></div>
                 <div class="stat-item"><span class="stat-number">8.7s</span> <span class="stat-label">avg. response</span></div>
             </div>
+
+            <!-- CLIENTS SECTION -->
+            <div class="clients-section">
+                <h2 class="section-title" style="margin-bottom: 0.5rem;">Our <span style="color: var(--accent);">clients</span></h2>
+                <p class="section-sub" style="margin-left: auto; margin-right: auto;">Trusted by innovative UK brands</p>
+                <div class="clients-grid">
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/d64000/white?text=HFA" alt="hfa-logo">
+                        </div>
+                        <span>HFA</span>
+                    </div>
+
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/11181c/white?text=IWO" alt="iwo-logo">
+                        </div>
+                        <span>Iwo Land</span>
+                    </div>
+
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/d64000/white?text=HCA" alt="hca-logo">
+                        </div>
+                        <span>HCA</span>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
 
-        <!-- SERVICE PAGES with PACKAGES -->
+        <!-- SERVICE PAGES with PACKAGES - updated buttons and no prices -->
         <!-- Website design -->
         <div id="webdesign" class="page">
             <section style="padding: 3rem 0;">
                 <h1 class="section-title">Website <span style="color:var(--accent);">design</span></h1>
                 <p class="section-sub">Tailored, conversion-focused designs that make your brand stand out.</p>
                 <div class="packages-grid">
-                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Essentials" data-modal-desc="Ideal for startups: 5-page custom design, mobile optimised, 2 rounds of revisions.">
+                    <div class="package-card" data-package="Essentials" data-service="Website design">
                         <div class="package-name">Essentials</div>
-                        <div class="package-price">£2,500 <span>one-off</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 5 page design</li>
                             <li><i class="fa-solid fa-check"></i> Mobile responsive</li>
                             <li><i class="fa-solid fa-check"></i> 2 revision rounds</li>
                             <li><i class="fa-solid fa-check"></i> Figma deliverable</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-paint-brush','Essentials package','Includes 5 custom pages, mobile optimisation, and 2 revision rounds.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website design" data-package="Essentials">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Business" data-modal-desc="10 pages, e‑com ready, UX workshop, and 4 revision rounds.">
+                    <div class="package-card" data-package="Business" data-service="Website design">
                         <div class="package-name">Business</div>
-                        <div class="package-price">£4,800 <span>one-off</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 10 page design</li>
                             <li><i class="fa-solid fa-check"></i> E‑commerce layout</li>
                             <li><i class="fa-solid fa-check"></i> UX workshop</li>
                             <li><i class="fa-solid fa-check"></i> 4 revision rounds</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-paint-brush','Business package','10 pages, e‑com ready, UX workshop, 4 revisions.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website design" data-package="Business">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Enterprise" data-modal-desc="Unlimited pages, custom illustrations, advanced interactions, and dedicated support.">
+                    <div class="package-card" data-package="Enterprise" data-service="Website design">
                         <div class="package-name">Enterprise</div>
-                        <div class="package-price">£9,500+ <span>bespoke</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> Unlimited pages</li>
                             <li><i class="fa-solid fa-check"></i> Custom illustrations</li>
                             <li><i class="fa-solid fa-check"></i> Advanced animations</li>
                             <li><i class="fa-solid fa-check"></i> Priority support</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-paint-brush','Enterprise package','Unlimited pages, custom illustrations, advanced interactions.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website design" data-package="Enterprise">Contact a freelancer</button>
                     </div>
                 </div>
             </section>
@@ -1017,38 +1195,35 @@
                 <h1 class="section-title">Website <span style="color:var(--accent);">hosting</span></h1>
                 <p class="section-sub">Fast, secure, and 100% UK‑based hosting with 99.9% uptime.</p>
                 <div class="packages-grid">
-                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Starter Hosting" data-modal-desc="Perfect for small sites: 10GB SSD, 50GB bandwidth, free SSL.">
+                    <div class="package-card" data-package="Starter" data-service="Website hosting">
                         <div class="package-name">Starter</div>
-                        <div class="package-price">£15 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 10GB SSD storage</li>
                             <li><i class="fa-solid fa-check"></i> 50GB bandwidth</li>
                             <li><i class="fa-solid fa-check"></i> Free SSL certificate</li>
                             <li><i class="fa-solid fa-check"></i> 24/7 monitoring</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-server','Starter hosting','10GB SSD, 50GB bandwidth, free SSL.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website hosting" data-package="Starter">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Business Hosting" data-modal-desc="For growing businesses: 50GB SSD, unlimited bandwidth, daily backups.">
+                    <div class="package-card" data-package="Business" data-service="Website hosting">
                         <div class="package-name">Business</div>
-                        <div class="package-price">£35 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 50GB SSD storage</li>
                             <li><i class="fa-solid fa-check"></i> Unlimited bandwidth</li>
                             <li><i class="fa-solid fa-check"></i> Daily backups</li>
                             <li><i class="fa-solid fa-check"></i> Priority support</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-server','Business hosting','50GB SSD, unlimited bandwidth, daily backups.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website hosting" data-package="Business">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Performance" data-modal-desc="High‑traffic sites: 100GB NVMe, staging env, dedicated IP.">
+                    <div class="package-card" data-package="Performance" data-service="Website hosting">
                         <div class="package-name">Performance</div>
-                        <div class="package-price">£75 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 100GB NVMe storage</li>
                             <li><i class="fa-solid fa-check"></i> Staging environment</li>
                             <li><i class="fa-solid fa-check"></i> Dedicated IP</li>
                             <li><i class="fa-solid fa-check"></i> 24/7 priority support</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-server','Performance hosting','100GB NVMe, staging env, dedicated IP.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="Website hosting" data-package="Performance">Contact a freelancer</button>
                     </div>
                 </div>
             </section>
@@ -1060,81 +1235,75 @@
                 <h1 class="section-title">App <span style="color:var(--accent);">development</span></h1>
                 <p class="section-sub">Native and cross‑platform apps that users love.</p>
                 <div class="packages-grid">
-                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="MVP" data-modal-desc="Minimum viable product: iOS/Android, backend ready, 3 months support.">
+                    <div class="package-card" data-package="MVP" data-service="App development">
                         <div class="package-name">MVP</div>
-                        <div class="package-price">£12,000 <span>starting</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> iOS & Android</li>
                             <li><i class="fa-solid fa-check"></i> Backend API</li>
                             <li><i class="fa-solid fa-check"></i> 3 months support</li>
                             <li><i class="fa-solid fa-check"></i> App store submission</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-mobile-screen','MVP package','iOS/Android app, backend, 3 months support.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="MVP">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="Growth" data-modal-desc="Full‑featured app with analytics, push notifications, and admin panel.">
+                    <div class="package-card" data-package="Growth" data-service="App development">
                         <div class="package-name">Growth</div>
-                        <div class="package-price">£24,000 <span>bespoke</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> Advanced features</li>
                             <li><i class="fa-solid fa-check"></i> Push notifications</li>
                             <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
                             <li><i class="fa-solid fa-check"></i> Admin panel</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-mobile-screen','Growth package','Full features, push, analytics, admin.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="Growth">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="Enterprise" data-modal-desc="Scalable architecture, multi‑region, dedicated team, ongoing maintenance.">
+                    <div class="package-card" data-package="Enterprise" data-service="App development">
                         <div class="package-name">Enterprise</div>
-                        <div class="package-price">£45,000+ <span>custom</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> Scalable backend</li>
                             <li><i class="fa-solid fa-check"></i> Multi‑region</li>
                             <li><i class="fa-solid fa-check"></i> Dedicated team</li>
                             <li><i class="fa-solid fa-check"></i> Ongoing maintenance</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-mobile-screen','Enterprise app','Scalable, multi‑region, dedicated team.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="Enterprise">Contact a freelancer</button>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- SEO optimisations -->
+        <!-- SEO optimizations -->
         <div id="seo" class="page">
             <section style="padding: 3rem 0;">
-                <h1 class="section-title">SEO <span style="color:var(--accent);">optimisations</span></h1>
+                <h1 class="section-title">SEO <span style="color:var(--accent);">optimizations</span></h1>
                 <p class="section-sub">Data‑driven SEO to get you to the top of Google.</p>
                 <div class="packages-grid">
-                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="Local SEO" data-modal-desc="Perfect for local businesses: Google My Business, local citations, 5 keywords.">
+                    <div class="package-card" data-package="Local SEO" data-service="SEO optimisations">
                         <div class="package-name">Local SEO</div>
-                        <div class="package-price">£450 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> Google My Business</li>
                             <li><i class="fa-solid fa-check"></i> Local citations</li>
                             <li><i class="fa-solid fa-check"></i> 5 keyword focus</li>
                             <li><i class="fa-solid fa-check"></i> Monthly report</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','Local SEO','GMB, citations, 5 keywords, monthly report.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="Local SEO">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="National SEO" data-modal-desc="For UK‑wide reach: 20 keywords, content strategy, backlink building.">
+                    <div class="package-card" data-package="National" data-service="SEO optimisations">
                         <div class="package-name">National</div>
-                        <div class="package-price">£950 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 20 keywords</li>
                             <li><i class="fa-solid fa-check"></i> Content strategy</li>
                             <li><i class="fa-solid fa-check"></i> Backlink building</li>
                             <li><i class="fa-solid fa-check"></i> Competitor analysis</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','National SEO','20 keywords, content, backlinks, competitor analysis.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="National">Contact a freelancer</button>
                     </div>
-                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="E‑commerce SEO" data-modal-desc="Product optimisation, category pages, technical SEO, and monthly audits.">
+                    <div class="package-card" data-package="E‑commerce SEO" data-service="SEO optimisations">
                         <div class="package-name">E‑commerce</div>
-                        <div class="package-price">£1,450 <span>/month</span></div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> Product optimisation</li>
                             <li><i class="fa-solid fa-check"></i> Category pages</li>
                             <li><i class="fa-solid fa-check"></i> Technical SEO</li>
                             <li><i class="fa-solid fa-check"></i> Monthly audits</li>
                         </ul>
-                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','E‑commerce SEO','Product/category optimisation, technical SEO, audits.')">Choose plan</button>
+                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="E‑commerce SEO">Contact a freelancer</button>
                     </div>
                 </div>
             </section>
@@ -1236,7 +1405,7 @@
         <section class="cta-section">
             <h2>Ready to <span class="accent-text">seduce</span> your audience?</h2>
             <p>Join the UK brands that trust WIX UI.</p>
-            <button class="cta-btn" onclick="showModal('fa-rocket','Start your project','🚀 Drop us a line via the contact page.')">👉  Start your project  👈</button>
+            <button class="cta-btn">👉  Start your project  👈</button>
         </section>
 
         <!-- footer -->
@@ -1264,7 +1433,7 @@
                 </div>
             </div>
         </footer>
-        <div style="text-align: center; padding: 1.5rem 0; color: #888;">© 2025 WIX UI — Websites with swagger.</div>
+        <div style="text-align: center; padding: 1.5rem 0; color: #888;">© 2026 WIX UI — Websites with swagger.</div>
     </main>
 
     <script>
@@ -1316,7 +1485,7 @@
                 showPage('contact');
             });
 
-            // modal logic
+            // modal logic for generic info modal
             const modal = document.getElementById('customModal');
             const modalIcon = document.getElementById('modalIcon');
             const modalTitle = document.getElementById('modalTitle');
@@ -1341,9 +1510,56 @@
                 if (e.target === modal) closeModal();
             });
 
-            // attach modal to any element with data-modal-* attributes
+            // freelancer modal logic
+            const freelancerModal = document.getElementById('freelancerModal');
+            const freelancerClose = document.getElementById('freelancerModalClose');
+            const freelancerService = document.getElementById('freelancerService');
+            const freelancerPackage = document.getElementById('freelancerPackage');
+            const freelancerName = document.getElementById('freelancerName');
+            const freelancerDate = document.getElementById('freelancerDate');
+            const freelancerSubmit = document.getElementById('freelancerSubmitBtn');
+
+            window.showFreelancerModal = (service, pkg) => {
+                freelancerService.value = service;
+                freelancerPackage.value = pkg;
+                freelancerName.value = '';
+                freelancerDate.value = '';
+                freelancerModal.classList.add('show');
+            };
+
+            freelancerClose.addEventListener('click', () => {
+                freelancerModal.classList.remove('show');
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === freelancerModal) freelancerModal.classList.remove('show');
+            });
+
+            freelancerSubmit.addEventListener('click', () => {
+                const name = freelancerName.value.trim();
+                const date = freelancerDate.value;
+                if (!name || !date) {
+                    alert('Please fill in both name and date.');
+                    return;
+                }
+                alert(`✨ Thanks ${name}! A freelancer will contact you about the ${freelancerService.value} - ${freelancerPackage.value} package. We’ll be in touch by ${new Date(date).toLocaleDateString()}.`);
+                freelancerModal.classList.remove('show');
+            });
+
+            // attach freelancer modal to all contact-freelancer buttons
+            document.querySelectorAll('.contact-freelancer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const service = btn.getAttribute('data-service');
+                    const pkg = btn.getAttribute('data-package');
+                    showFreelancerModal(service, pkg);
+                });
+            });
+
+            // attach generic modal to any element with data-modal-* attributes (except buttons)
             document.querySelectorAll('[data-modal-icon]').forEach(el => {
                 el.addEventListener('click', (e) => {
+                    // if the clicked element is inside a button, ignore to avoid double triggers
+                    if (e.target.closest('button')) return;
                     const icon = el.dataset.modalIcon;
                     const title = el.dataset.modalTitle;
                     const desc = el.dataset.modalDesc;
