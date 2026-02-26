@@ -61,8 +61,9 @@
 
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 2.5rem;
             font-weight: 500;
+            align-items: center;
         }
 
         .nav-links a {
@@ -78,6 +79,63 @@
         .nav-links a.active {
             border-bottom-color: var(--accent);
             color: var(--accent);
+        }
+
+        /* dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: transparent;
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+
+        .dropbtn:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -1rem;
+            background: white;
+            min-width: 240px;
+            box-shadow: var(--shadow);
+            border-radius: 30px;
+            padding: 1.2rem 0;
+            z-index: 200;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .dropdown-content a {
+            color: var(--primary);
+            padding: 0.7rem 2rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            border-bottom: none !important;
+            transition: 0.1s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(214,64,0,0.05);
+            color: var(--accent);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         .nav-cta {
@@ -106,7 +164,7 @@
             padding: 0 5%;
         }
 
-        /* hero section */
+        /* hero section (home) */
         .hero {
             padding: 5rem 0 6rem 0;
             display: flex;
@@ -258,7 +316,7 @@
             display: block;
         }
 
-        /* interactive stats / trust row */
+        /* stats */
         .stats {
             display: flex;
             justify-content: space-around;
@@ -292,7 +350,7 @@
             color: var(--text-muted);
         }
 
-        /* services section */
+        /* section titles */
         .section-title {
             font-size: 2.8rem;
             font-weight: 700;
@@ -307,6 +365,7 @@
             font-size: 1.2rem;
         }
 
+        /* service cards (home) */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -346,7 +405,7 @@
             color: var(--text-muted);
         }
 
-        /* portfolio / featured work */
+        /* showcase */
         .showcase {
             background: white;
             border-radius: 80px 80px 40px 40px;
@@ -400,57 +459,74 @@
             color: var(--text-muted);
         }
 
-        /* WORK PAGE SPECIFIC */
-        .work-grid-full {
+        /* PACKAGE / PRICING GRID (used in service pages) */
+        .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0 4rem;
         }
-        .work-card {
+        .package-card {
             background: white;
             border-radius: 40px;
-            overflow: hidden;
-            transition: 0.2s;
+            padding: 2.5rem 2rem;
             border: 1px solid var(--border-subtle);
+            transition: 0.2s;
+            text-align: center;
             cursor: pointer;
         }
-        .work-card:hover {
+        .package-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent);
             box-shadow: var(--shadow);
         }
-        .work-card-img {
-            height: 260px;
-            background: #dbd6cf;
+        .package-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .package-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .package-features {
+            list-style: none;
+            margin: 1.8rem 0;
+            text-align: left;
+            padding: 0 0.5rem;
+        }
+        .package-features li {
+            margin: 0.8rem 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(145deg, #cdc8bf, #e7e1d8);
-            color: #3b352f;
-            font-size: 3rem;
-        }
-        .work-card-content {
-            padding: 2rem;
-        }
-        .work-card-content h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .work-card-content p {
+            gap: 0.6rem;
             color: var(--text-muted);
-            margin-bottom: 1.2rem;
         }
-        .work-tag {
-            display: inline-block;
-            background: rgba(214,64,0,0.08);
+        .package-features i {
             color: var(--accent);
-            padding: 0.3rem 1rem;
+            width: 20px;
+        }
+        .package-cta {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
             border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-right: 0.6rem;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .package-cta:hover {
+            background: var(--accent);
         }
 
         /* TEAM GRID */
@@ -486,7 +562,7 @@
             color: var(--text-muted);
         }
 
-        /* INSIGHTS GRID (full) */
+        /* INSIGHTS GRID */
         .insights-grid-full {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -693,7 +769,6 @@
             transform: scale(1.1);
         }
 
-        /* uk badge */
         .uk-badge {
             display: inline-flex;
             align-items: center;
@@ -717,7 +792,7 @@
             display: block;
         }
 
-        /* MODAL STYLES - clean, custom, sexy */
+        /* MODAL STYLES */
         .modal {
             display: none;
             position: fixed;
@@ -797,7 +872,6 @@
             background: var(--accent);
         }
 
-        /* responsive */
         @media (max-width: 700px) {
             .navbar {
                 flex-direction: column;
@@ -806,6 +880,8 @@
             }
             .nav-links {
                 gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             .hero-left h1 {
                 font-size: 2.8rem;
@@ -820,24 +896,32 @@
     </style>
 </head>
 <body>
-    <!-- MODAL (single instance, dynamically updated) -->
+    <!-- MODAL (single instance) -->
     <div id="customModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">&times;</span>
             <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-crown"></i></div>
             <div class="modal-title" id="modalTitle">Service detail</div>
-            <div class="modal-desc" id="modalDesc">We run discovery workshops, user testing, and prototyping to craft intuitive experiences.</div>
+            <div class="modal-desc" id="modalDesc">Information goes here.</div>
             <button class="modal-btn" id="modalAction">Got it</button>
         </div>
     </div>
 
-    <!-- navigation -->
+    <!-- navigation with dropdown -->
     <nav class="navbar">
-        <div class="logo" id="logo" >
-            WIX UI<span class="logo-dot">.</span>
-        </div>
+        <div class="logo" id="logo">WIX UI<span class="logo-dot">.</span></div>
         <div class="nav-links">
-            <a href="#" class="nav-link" data-page="home">Work</a>
+            <a href="#" class="nav-link" data-page="home">Home</a>
+            <!-- SERVICES DROPDOWN -->
+            <div class="dropdown">
+                <button class="dropbtn">Services <i class="fa-solid fa-chevron-down" style="margin-left: 4px; font-size: 0.8rem;"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" class="nav-link" data-page="webdesign">Website design</a>
+                    <a href="#" class="nav-link" data-page="webhosting">Website hosting</a>
+                    <a href="#" class="nav-link" data-page="appdev">App development</a>
+                    <a href="#" class="nav-link" data-page="seo">SEO optimisations</a>
+                </div>
+            </div>
             <a href="#" class="nav-link" data-page="studio">Studio</a>
             <a href="#" class="nav-link" data-page="insights">Insights</a>
             <a href="#" class="nav-link" data-page="contact">Contact</a>
@@ -846,12 +930,11 @@
     </nav>
 
     <main class="container">
-        <!-- HOME PAGE (default active) -->
+        <!-- HOME PAGE -->
         <div id="home" class="page active">
-            <!-- hero with rotating words -->
             <section class="hero">
                 <div class="hero-left">
-                    <span class="hero-badge"><i class="fa-solid fa-flag-uk" style="margin-right: 6px;"></i>  based in London & Manchester</span>
+                    <span class="hero-badge"><i class="fa-solid fa-flag-uk"></i> based in London & Manchester</span>
                     <h1>
                         Websites with 
                         <span class="rotating-words">
@@ -863,174 +946,259 @@
                     </h1>
                     <p>We're WIX UI — we craft digital experiences that convert, provoke, and seduce. No templates, just bespoke code & award‑winning design.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn-primary" id="homeToWork">See our work <i class="fa-regular fa-eye" style="margin-left: 8px;"></i></a>
-                        <a href="#" class="btn-outline" id="homeToContact">Let's talk <i class="fa-regular fa-message" style="margin-left: 8px;"></i></a>
+                        <a href="#" class="btn-primary" id="homeToWork">See our work <i class="fa-regular fa-eye"></i></a>
+                        <a href="#" class="btn-outline" id="homeToContact">Let's talk <i class="fa-regular fa-message"></i></a>
                     </div>
-                    <!-- uk trust badge -->
-                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
                         <span class="uk-badge"><i class="fa-solid fa-circle-check"></i> 100% UK team</span>
                         <span class="uk-badge"><i class="fa-solid fa-trophy"></i> 48+ awards</span>
                         <span class="uk-badge"><i class="fa-solid fa-clock"></i> 2‑week delivery</span>
                     </div>
                 </div>
                 <div class="hero-right">
-                    <!-- abstract modern image -->
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%23eae2d7'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2311181c' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2311181c' stroke-width='8' /%3E%3C/svg%3E"
-                         alt="WIX UI abstract design" style="width:100%;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%23eae2d7'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2311181c' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2311181c' stroke-width='8' /%3E%3C/svg%3E" alt="WIX UI abstract design" style="width:100%;">
                 </div>
             </section>
-
-            <!-- stat strip -->
             <div class="stats">
                 <div class="stat-item"><span class="stat-number">14+</span> <span class="stat-label">years</span></div>
                 <div class="stat-item"><span class="stat-number">320</span> <span class="stat-label">websites</span></div>
                 <div class="stat-item"><span class="stat-number">100%</span> <span class="stat-label">UK based</span></div>
                 <div class="stat-item"><span class="stat-number">8.7s</span> <span class="stat-label">avg. response</span></div>
             </div>
+        </div>
 
-            <!-- services -->
-            <section style="margin: 5rem 0;">
-                <h2 class="section-title">We don't do <br>“just another website”.</h2>
-                <div class="section-sub">Every line of code is crafted for speed, seduction, and SEO — because your business deserves the best.</div>
-                <div class="services-grid">
-                    <div class="service-card" data-modal-icon="fa-crown" data-modal-title="Bespoke UX" data-modal-desc="We run discovery workshops, user testing, and prototyping. Every interface is tailored to your audience, resulting in intuitive experiences that keep users coming back.">
-                        <div class="service-icon"><i class="fa-solid fa-crown"></i></div>
-                        <h3>Bespoke UX</h3>
-                        <p>Interfaces that feel intuitive yet unexpected. We study your users and deliver pleasure.</p>
+        <!-- SERVICE PAGES with PACKAGES -->
+        <!-- Website design -->
+        <div id="webdesign" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">Website <span style="color:var(--accent);">design</span></h1>
+                <p class="section-sub">Tailored, conversion-focused designs that make your brand stand out.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Essentials" data-modal-desc="Ideal for startups: 5-page custom design, mobile optimised, 2 rounds of revisions.">
+                        <div class="package-name">Essentials</div>
+                        <div class="package-price">£2,500 <span>one-off</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 5 page design</li>
+                            <li><i class="fa-solid fa-check"></i> Mobile responsive</li>
+                            <li><i class="fa-solid fa-check"></i> 2 revision rounds</li>
+                            <li><i class="fa-solid fa-check"></i> Figma deliverable</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-paint-brush','Essentials package','Includes 5 custom pages, mobile optimisation, and 2 revision rounds.')">Choose plan</button>
                     </div>
-                    <div class="service-card" data-modal-icon="fa-bolt" data-modal-title="Lightning code" data-modal-desc="Hand-coded with performance in mind: sub‑2s loads, fully accessible, and no bloat. We don't use page builders — ever.">
-                        <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>lightning code</h3>
-                        <p>No bloat, no page builders. Just clean HTML/CSS/JS that loads in a blink.</p>
+                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Business" data-modal-desc="10 pages, e‑com ready, UX workshop, and 4 revision rounds.">
+                        <div class="package-name">Business</div>
+                        <div class="package-price">£4,800 <span>one-off</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 10 page design</li>
+                            <li><i class="fa-solid fa-check"></i> E‑commerce layout</li>
+                            <li><i class="fa-solid fa-check"></i> UX workshop</li>
+                            <li><i class="fa-solid fa-check"></i> 4 revision rounds</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-paint-brush','Business package','10 pages, e‑com ready, UX workshop, 4 revisions.')">Choose plan</button>
                     </div>
-                    <div class="service-card" data-modal-icon="fa-magnifying-glass-chart" data-modal-title="Conversion first" data-modal-desc="We A/B test, analyse heatmaps, and optimise every button. Our designs are built to maximise ROI — not just to look pretty.">
-                        <div class="service-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                        <h3>Conversion first</h3>
-                        <p>We design to sell. Every button, colour and micro‑copy is tested for ROI.</p>
+                    <div class="package-card" data-modal-icon="fa-paint-brush" data-modal-title="Enterprise" data-modal-desc="Unlimited pages, custom illustrations, advanced interactions, and dedicated support.">
+                        <div class="package-name">Enterprise</div>
+                        <div class="package-price">£9,500+ <span>bespoke</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Unlimited pages</li>
+                            <li><i class="fa-solid fa-check"></i> Custom illustrations</li>
+                            <li><i class="fa-solid fa-check"></i> Advanced animations</li>
+                            <li><i class="fa-solid fa-check"></i> Priority support</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-paint-brush','Enterprise package','Unlimited pages, custom illustrations, advanced interactions.')">Choose plan</button>
                     </div>
                 </div>
             </section>
+        </div>
 
-            <!-- showcase -->
-            <div class="showcase" id="showcase">
-                <div style="padding: 0 5%;">
-                    <h2 class="section-title" style="margin-bottom: 0.5rem;">Selected <span style="color: var(--accent);">sorcery</span></h2>
-                    <div class="section-sub">Recent projects that made our clients very happy (and rich).</div>
-                </div>
-                <div style="padding: 2rem 5% 0;">
-                    <div class="showcase-grid">
-                        <div class="work-item" data-modal-icon="fa-display" data-modal-title="BARE KNUCKLE" data-modal-desc="E‑commerce for a fashion brand: 340% revenue increase, 2.3s load time, and a 150% boost in mobile conversions.">
-                            <div class="work-img"><i class="fa-solid fa-display" style="font-size: 4rem; opacity: 0.4;"></i></div>
-                            <div class="work-caption">
-                                <h4>BARE KNUCKLE</h4>
-                                <p>e‑comm · fashion</p>
-                            </div>
-                        </div>
-                        <div class="work-item" data-modal-icon="fa-chart-simple" data-modal-title="FINANCE LAB" data-modal-desc="Fintech dashboard used by 50k+ investors. 99.9% uptime, real‑time data, and a 40% increase in user retention.">
-                            <div class="work-img"><i class="fa-solid fa-chart-simple" style="font-size: 4rem; opacity: 0.4;"></i></div>
-                            <div class="work-caption">
-                                <h4>FINANCE LAB</h4>
-                                <p>fintech dashboard</p>
-                            </div>
-                        </div>
-                        <div class="work-item" data-modal-icon="fa-martini-glass" data-modal-title="SHOREDITSH HOUSE" data-modal-desc="Membership site for a private club. Bookings up 78%, member satisfaction score 4.9/5, and fully integrated CRM.">
-                            <div class="work-img"><i class="fa-solid fa-martini-glass" style="font-size: 4rem; opacity: 0.4;"></i></div>
-                            <div class="work-caption">
-                                <h4>SHOREDITSH HOUSE</h4>
-                                <p>membership · lifestyle</p>
-                            </div>
-                        </div>
+        <!-- Website hosting -->
+        <div id="webhosting" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">Website <span style="color:var(--accent);">hosting</span></h1>
+                <p class="section-sub">Fast, secure, and 100% UK‑based hosting with 99.9% uptime.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Starter Hosting" data-modal-desc="Perfect for small sites: 10GB SSD, 50GB bandwidth, free SSL.">
+                        <div class="package-name">Starter</div>
+                        <div class="package-price">£15 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 10GB SSD storage</li>
+                            <li><i class="fa-solid fa-check"></i> 50GB bandwidth</li>
+                            <li><i class="fa-solid fa-check"></i> Free SSL certificate</li>
+                            <li><i class="fa-solid fa-check"></i> 24/7 monitoring</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-server','Starter hosting','10GB SSD, 50GB bandwidth, free SSL.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Business Hosting" data-modal-desc="For growing businesses: 50GB SSD, unlimited bandwidth, daily backups.">
+                        <div class="package-name">Business</div>
+                        <div class="package-price">£35 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 50GB SSD storage</li>
+                            <li><i class="fa-solid fa-check"></i> Unlimited bandwidth</li>
+                            <li><i class="fa-solid fa-check"></i> Daily backups</li>
+                            <li><i class="fa-solid fa-check"></i> Priority support</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-server','Business hosting','50GB SSD, unlimited bandwidth, daily backups.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-server" data-modal-title="Performance" data-modal-desc="High‑traffic sites: 100GB NVMe, staging env, dedicated IP.">
+                        <div class="package-name">Performance</div>
+                        <div class="package-price">£75 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 100GB NVMe storage</li>
+                            <li><i class="fa-solid fa-check"></i> Staging environment</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated IP</li>
+                            <li><i class="fa-solid fa-check"></i> 24/7 priority support</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-server','Performance hosting','100GB NVMe, staging env, dedicated IP.')">Choose plan</button>
                     </div>
                 </div>
-            </div>
-        </div> <!-- end home -->
+            </section>
+        </div>
 
-        <!-- STUDIO PAGE (FULL CONTENT) -->
+        <!-- App development -->
+        <div id="appdev" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">App <span style="color:var(--accent);">development</span></h1>
+                <p class="section-sub">Native and cross‑platform apps that users love.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="MVP" data-modal-desc="Minimum viable product: iOS/Android, backend ready, 3 months support.">
+                        <div class="package-name">MVP</div>
+                        <div class="package-price">£12,000 <span>starting</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> iOS & Android</li>
+                            <li><i class="fa-solid fa-check"></i> Backend API</li>
+                            <li><i class="fa-solid fa-check"></i> 3 months support</li>
+                            <li><i class="fa-solid fa-check"></i> App store submission</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-mobile-screen','MVP package','iOS/Android app, backend, 3 months support.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="Growth" data-modal-desc="Full‑featured app with analytics, push notifications, and admin panel.">
+                        <div class="package-name">Growth</div>
+                        <div class="package-price">£24,000 <span>bespoke</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Advanced features</li>
+                            <li><i class="fa-solid fa-check"></i> Push notifications</li>
+                            <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
+                            <li><i class="fa-solid fa-check"></i> Admin panel</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-mobile-screen','Growth package','Full features, push, analytics, admin.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-mobile-screen" data-modal-title="Enterprise" data-modal-desc="Scalable architecture, multi‑region, dedicated team, ongoing maintenance.">
+                        <div class="package-name">Enterprise</div>
+                        <div class="package-price">£45,000+ <span>custom</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Scalable backend</li>
+                            <li><i class="fa-solid fa-check"></i> Multi‑region</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated team</li>
+                            <li><i class="fa-solid fa-check"></i> Ongoing maintenance</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-mobile-screen','Enterprise app','Scalable, multi‑region, dedicated team.')">Choose plan</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SEO optimisations -->
+        <div id="seo" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">SEO <span style="color:var(--accent);">optimisations</span></h1>
+                <p class="section-sub">Data‑driven SEO to get you to the top of Google.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="Local SEO" data-modal-desc="Perfect for local businesses: Google My Business, local citations, 5 keywords.">
+                        <div class="package-name">Local SEO</div>
+                        <div class="package-price">£450 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Google My Business</li>
+                            <li><i class="fa-solid fa-check"></i> Local citations</li>
+                            <li><i class="fa-solid fa-check"></i> 5 keyword focus</li>
+                            <li><i class="fa-solid fa-check"></i> Monthly report</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','Local SEO','GMB, citations, 5 keywords, monthly report.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="National SEO" data-modal-desc="For UK‑wide reach: 20 keywords, content strategy, backlink building.">
+                        <div class="package-name">National</div>
+                        <div class="package-price">£950 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 20 keywords</li>
+                            <li><i class="fa-solid fa-check"></i> Content strategy</li>
+                            <li><i class="fa-solid fa-check"></i> Backlink building</li>
+                            <li><i class="fa-solid fa-check"></i> Competitor analysis</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','National SEO','20 keywords, content, backlinks, competitor analysis.')">Choose plan</button>
+                    </div>
+                    <div class="package-card" data-modal-icon="fa-magnifying-glass" data-modal-title="E‑commerce SEO" data-modal-desc="Product optimisation, category pages, technical SEO, and monthly audits.">
+                        <div class="package-name">E‑commerce</div>
+                        <div class="package-price">£1,450 <span>/month</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Product optimisation</li>
+                            <li><i class="fa-solid fa-check"></i> Category pages</li>
+                            <li><i class="fa-solid fa-check"></i> Technical SEO</li>
+                            <li><i class="fa-solid fa-check"></i> Monthly audits</li>
+                        </ul>
+                        <button class="package-cta" onclick="showModal('fa-magnifying-glass','E‑commerce SEO','Product/category optimisation, technical SEO, audits.')">Choose plan</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- STUDIO PAGE -->
         <div id="studio" class="page">
             <section style="padding: 4rem 0;">
                 <h1 class="section-title">We are <span style="color:var(--accent);">WIX UI</span></h1>
-                <p class="section-sub" style="margin-left: auto; margin-right: auto; max-width: 700px;">A tight‑knit crew of designers, developers, and digital strategists based in Manchester and London. We’ve been crafting award‑winning digital experiences since 2011.</p>
-                
-                <!-- team grid -->
+                <p class="section-sub">A tight‑knit crew based in Manchester and London. We’ve been crafting award‑winning digital experiences since 2011.</p>
                 <div class="team-grid">
-                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Alex Mercer" data-modal-desc="Founder & Creative director. 14 years shaping digital brands. Previously led design at Wolff Olins.">
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Alex Mercer" data-modal-desc="Founder & Creative director. 14 years shaping digital brands.">
                         <i class="fa-regular fa-user"></i>
                         <h4>Alex Mercer</h4>
                         <p>Founder / Creative director</p>
                     </div>
-                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Priya Kapoor" data-modal-desc="Lead developer, accessibility & performance nerd. 10 years full‑stack, passionate about inclusive design.">
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Priya Kapoor" data-modal-desc="Lead developer, accessibility & performance nerd.">
                         <i class="fa-regular fa-user"></i>
                         <h4>Priya Kapoor</h4>
                         <p>Lead developer</p>
                     </div>
-                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Joe Higgins" data-modal-desc="UX director. Loves user research and micro‑interactions. Previously at ustwo.">
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Joe Higgins" data-modal-desc="UX director. Loves user research and micro‑interactions.">
                         <i class="fa-regular fa-user"></i>
                         <h4>Joe Higgins</h4>
                         <p>UX director</p>
                     </div>
-                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Lily MacKenzie" data-modal-desc="Strategy & CRO. Data‑obsessed conversion expert. Runs our analytics and experimentation.">
+                    <div class="team-member" data-modal-icon="fa-user" data-modal-title="Lily MacKenzie" data-modal-desc="Strategy & CRO. Data‑obsessed conversion expert.">
                         <i class="fa-regular fa-user"></i>
                         <h4>Lily MacKenzie</h4>
                         <p>Strategy & CRO</p>
                     </div>
                 </div>
-
-                <!-- extended culture / manifesto -->
                 <div style="background: white; border-radius: 80px; padding: 3rem; margin: 4rem 0;">
-                    <h2 style="font-size: 2rem; margin-bottom: 2rem;">⭐ Our manifesto</h2>
-                    <p style="font-size: 1.2rem; max-width: 800px; margin-bottom: 1.5rem;">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention, every pixel placed with purpose.</p>
-                    <p style="font-size: 1.2rem; max-width: 800px;">We’re 100% independent and 100% UK‑based. Our clients become long‑term partners.</p>
-                    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 3rem 0;">
-                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-people-group"></i> 12 experts</span>
-                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-trophy"></i> 48 awards</span>
-                        <span class="uk-badge" style="font-size: 1.2rem; padding: 0.8rem 2rem;"><i class="fa-solid fa-clock"></i> 14+ years</span>
-                    </div>
+                    <h2 style="font-size: 2rem;">⭐ Our manifesto</h2>
+                    <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention.</p>
                 </div>
             </section>
         </div>
 
-        <!-- INSIGHTS PAGE (FULL CONTENT) -->
+        <!-- INSIGHTS PAGE -->
         <div id="insights" class="page">
             <section style="padding: 4rem 0;">
                 <h1 class="section-title">Insights & <span style="color:var(--accent)">attitude</span></h1>
-                <p class="section-sub" style="max-width: 700px;">Thoughts on design, code, and digital culture from the WIX UI team.</p>
-                
                 <div class="insights-grid-full">
-                    <div class="insight-card" data-modal-icon="fa-newspaper" data-modal-title="Headless commerce" data-modal-desc="Why UK brands are switching to headless: faster sites, better scalability, and improved CX. We break down the data.">
+                    <div class="insight-card" data-modal-icon="fa-newspaper" data-modal-title="Headless commerce" data-modal-desc="Why UK brands are switching to headless: faster sites, better scalability.">
                         <i class="fa-regular fa-newspaper"></i>
                         <h3>Headless commerce</h3>
-                        <p>The future of UK e‑com: why speed and flexibility matter more than ever.</p>
+                        <p>The future of UK e‑com: why speed matters.</p>
                     </div>
-                    <div class="insight-card" data-modal-icon="fa-gem" data-modal-title="Design with swagger" data-modal-desc="Our 5‑step framework for creating interfaces that sell without screaming. Hint: it's all about psychology.">
+                    <div class="insight-card" data-modal-icon="fa-gem" data-modal-title="Design with swagger" data-modal-desc="Our 5‑step framework for creating interfaces that sell.">
                         <i class="fa-regular fa-gem"></i>
                         <h3>Design with swagger</h3>
-                        <p>How we create interfaces that sell without screaming.</p>
+                        <p>How we create interfaces that sell.</p>
                     </div>
-                    <div class="insight-card" data-modal-icon="fa-clock" data-modal-title="8.7s response" data-modal-desc="Our client obsession, quantified. How we reply faster than any agency (and why it matters).">
+                    <div class="insight-card" data-modal-icon="fa-clock" data-modal-title="8.7s response" data-modal-desc="Our client obsession, quantified.">
                         <i class="fa-regular fa-clock"></i>
                         <h3>8.7s response</h3>
-                        <p>Our client obsession, quantified. How we reply faster than any agency.</p>
-                    </div>
-                    <div class="insight-card" data-modal-icon="fa-code" data-modal-title="No‑code myth" data-modal-desc="Why custom code still outperforms every page builder: performance, flexibility, and future‑proofing.">
-                        <i class="fa-regular fa-code"></i>
-                        <h3>No‑code myth</h3>
-                        <p>Why custom code still outperforms every page builder (data inside).</p>
-                    </div>
-                    <div class="insight-card" data-modal-icon="fa-face-smile" data-modal-title="Persuasive UX" data-modal-desc="The psychological principles behind high‑converting interfaces: reciprocity, scarcity, and social proof.">
-                        <i class="fa-regular fa-face-smile"></i>
-                        <h3>Persuasive UX</h3>
-                        <p>The psychological principles behind high‑converting interfaces.</p>
-                    </div>
-                    <div class="insight-card" data-modal-icon="fa-building" data-modal-title="North / South" data-modal-desc="How we stay collaborative across two cities (and remote). Spoiler: lots of Notion and spontaneous voice notes.">
-                        <i class="fa-regular fa-building"></i>
-                        <h3>North / South</h3>
-                        <p>How we stay collaborative across two cities (and remote).</p>
+                        <p>Our client obsession, quantified.</p>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- CONTACT PAGE (FULL CONTENT) -->
+        <!-- CONTACT PAGE -->
         <div id="contact" class="page">
             <section style="padding: 3rem 0;">
                 <h1 class="section-title">Let’s <span style="color:var(--accent);">talk</span></h1>
@@ -1042,24 +1210,9 @@
                             <p><i class="fa-solid fa-phone"></i> +44 161 123 4567</p>
                             <p><i class="fa-solid fa-location-dot"></i> 42 Barbican, London / 42 Deansgate, Manchester</p>
                         </div>
-                        <div class="social-icons" style="margin-top: 2rem;">
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        </div>
-                        <!-- additional contact reasons -->
-                        <div style="margin-top: 3rem;">
-                            <h4>✨ Let’s chat about</h4>
-                            <ul style="list-style: none; margin-top:1rem;">
-                                <li style="margin-bottom:0.6rem;">→ New website or redesign</li>
-                                <li style="margin-bottom:0.6rem;">→ Conversion optimisation</li>
-                                <li style="margin-bottom:0.6rem;">→ Brand & digital strategy</li>
-                                <li style="margin-bottom:0.6rem;">→ Retainer / ongoing support</li>
-                            </ul>
-                        </div>
                     </div>
                     <div class="contact-form">
-                        <form id="demoContactForm" onsubmit="event.preventDefault(); showModal('fa-paper-plane', 'Message sent', '✨ Thanks for reaching out (demo). We’ll get back to you within 8.7 seconds (figuratively).');">
+                        <form onsubmit="event.preventDefault(); showModal('fa-paper-plane','Message sent','✨ Thanks for reaching out (demo). We’ll be in touch.');">
                             <div class="form-group">
                                 <label>Full name</label>
                                 <input type="text" placeholder="Jamie Smith" required>
@@ -1072,73 +1225,63 @@
                                 <label>Message</label>
                                 <textarea placeholder="Tell us about your project..."></textarea>
                             </div>
-                            <button type="submit" class="btn-primary" style="border: none; width: 100%;">Send message <i class="fa-regular fa-paper-plane"></i></button>
+                            <button type="submit" class="btn-primary" style="width:100%;">Send message</button>
                         </form>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- sexy call to action (visible on all pages) -->
+        <!-- Global CTA -->
         <section class="cta-section">
             <h2>Ready to <span class="accent-text">seduce</span> your audience?</h2>
-            <p>Join the UK brands that trust WIX UI to build websites that work as hard as they do.</p>
-            <button class="cta-btn" onclick="showModal('fa-rocket', 'Start your project', '🚀 We’re ready when you are. Drop us a line via the contact page and we’ll kick things off.');">👉  Start your project  👈</button>
-            <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.6;">📍 Manchester · London · remote UK</div>
+            <p>Join the UK brands that trust WIX UI.</p>
+            <button class="cta-btn" onclick="showModal('fa-rocket','Start your project','🚀 Drop us a line via the contact page.')">👉  Start your project  👈</button>
         </section>
 
-        <!-- footer (global) -->
+        <!-- footer -->
         <footer class="footer">
             <div class="footer-left">
-                <div class="logo" id="logo">WIX UI<span class="logo-dot">.</span></div>
+                <div class="logo">WIX UI<span class="logo-dot">.</span></div>
                 <p>Bespoke websites for the bold. Proudly built in the UK.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-behance"></i></a>
-                </div>
             </div>
             <div class="footer-right">
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <a href="#" class="nav-link" data-page="webdesign">Web design</a>
+                    <a href="#" class="nav-link" data-page="webhosting">Hosting</a>
+                    <a href="#" class="nav-link" data-page="appdev">App dev</a>
+                    <a href="#" class="nav-link" data-page="seo">SEO</a>
+                </div>
                 <div class="footer-col">
                     <h5>Studio</h5>
                     <a href="#" class="nav-link" data-page="studio">Work</a>
                     <a href="#" class="nav-link" data-page="studio">People</a>
-                    <a href="#" class="nav-link" data-page="studio">Careers</a>
-                </div>
-                <div class="footer-col">
-                    <h5>Services</h5>
-                    <a href="#">Design</a>
-                    <a href="#">Development</a>
-                    <a href="#">CRO</a>
                 </div>
                 <div class="footer-col">
                     <h5>Connect</h5>
                     <a href="#" class="nav-link" data-page="contact">hello@wixui.co.uk</a>
-                    <a href="#" class="nav-link" data-page="contact">+44 161 123 4567</a>
-                    <a href="#" class="nav-link" data-page="contact">@wixui</a>
                 </div>
             </div>
         </footer>
-        <!-- subtle copyright -->
-        <div style="text-align: center; padding: 1.5rem 0 2.5rem; color: #888; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.02);">
-            © 2025 WIX UI — Websites with swagger. All rights reserved.
-        </div>
+        <div style="text-align: center; padding: 1.5rem 0; color: #888;">© 2025 WIX UI — Websites with swagger.</div>
     </main>
 
-    <!-- page switching + modal logic -->
     <script>
         (function() {
-            // page switching logic
             const pages = {
                 home: document.getElementById('home'),
+                webdesign: document.getElementById('webdesign'),
+                webhosting: document.getElementById('webhosting'),
+                appdev: document.getElementById('appdev'),
+                seo: document.getElementById('seo'),
                 studio: document.getElementById('studio'),
                 insights: document.getElementById('insights'),
                 contact: document.getElementById('contact')
             };
 
             function showPage(pageId) {
-                Object.values(pages).forEach(p => p.classList.remove('active'));
+                Object.values(pages).forEach(p => p?.classList.remove('active'));
                 if (pages[pageId]) pages[pageId].classList.add('active');
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
@@ -1150,7 +1293,7 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const page = link.dataset.page;
-                    if (page) showPage(page);
+                    if (page && pages[page]) showPage(page);
                 });
             });
 
@@ -1162,32 +1305,18 @@
                 e.preventDefault();
                 showPage('contact');
             });
-
             document.querySelectorAll('#logo').forEach(logo => {
                 logo.addEventListener('click', (e) => {
                     e.preventDefault();
                     showPage('home');
                 });
             });
-
             document.getElementById('globalCta').addEventListener('click', (e) => {
                 e.preventDefault();
                 showPage('contact');
             });
 
-            // stat hover effect (just for fun)
-            const statItems = document.querySelectorAll('.stat-item');
-            statItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'scale(1.05)';
-                    item.style.transition = '0.15s';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'scale(1)';
-                });
-            });
-
-            // ---------- MODAL SYSTEM ----------
+            // modal logic
             const modal = document.getElementById('customModal');
             const modalIcon = document.getElementById('modalIcon');
             const modalTitle = document.getElementById('modalTitle');
@@ -1212,19 +1341,16 @@
                 if (e.target === modal) closeModal();
             });
 
-            // attach modal triggers to cards with data attributes
+            // attach modal to any element with data-modal-* attributes
             document.querySelectorAll('[data-modal-icon]').forEach(el => {
                 el.addEventListener('click', (e) => {
                     const icon = el.dataset.modalIcon;
                     const title = el.dataset.modalTitle;
                     const desc = el.dataset.modalDesc;
-                    if (icon && title && desc) {
-                        showModal(icon, title, desc);
-                    }
+                    if (icon && title && desc) showModal(icon, title, desc);
                 });
             });
 
-            // initial page
             showPage('home');
         })();
     </script>
