@@ -267,7 +267,7 @@
 
         /* main container */
         .container {
-            max-width: 1280px;
+            /* max-width: 1280px; */
             margin: 0 auto;
             padding: 0 5%;
             position: relative;
@@ -666,14 +666,14 @@
         /* PACKAGE GRID */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 0rem;
         }
         .package-card {
             background: var(--cyber-gray);
             border-radius: 8px;
-            padding: 2.5rem 2rem;
+            padding: 3.5rem 1.5rem;
             border: 1px solid var(--neon-green);
             transition: 0.2s;
             text-align: center;
@@ -1265,8 +1265,8 @@
             <div class="dropdown">
                 <button class="dropbtn">Services <i class="fa-solid fa-chevron-down" style="margin-left: 4px; font-size: 0.8rem;"></i></button>
                 <div class="dropdown-content">
-                    <a href="#" class="nav-link" data-page="dedicated-db">Dedicated Database</a>
-                    <a href="#" class="nav-link" data-page="shared-db">Shared Database</a>
+                    <a href="#" class="nav-link" data-page="dedicated-db">Dedicated Database Hosting</a>
+                    <a href="#" class="nav-link" data-page="shared-db">Shared Database Hosting</a>
                     <a href="#" class="nav-link" data-page="appdev">App development</a>
                     <a href="#" class="nav-link" data-page="seo">SEO optimisations</a>
                 </div>
@@ -1365,15 +1365,29 @@
         <!-- SERVICE PAGES with PACKAGES -->
         <!-- Website design -->
         <div id="dedicated-db" class="page">
-            <section style="padding: 3rem 0;">
-                <h1 class="section-title">Dedicated <span style="color:var(--accent);">Database</span></h1>
+            <section>
+                <h1 class="section-title">Dedicated Database <span style="color:var(--accent);">Hosting</span></h1>
                 <p class="section-sub">High-performance, isolated database instances for your most demanding applications.</p>
                 <div class="packages-grid">
+                    <div class="package-card" data-package="5GB Shared" data-service="Shared Database">
+                        <div class="package-name">5GB</div> {Guest Users Only}
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $45.79 <span style="font-size: 0.8rem; color: var(--cyber-text);">(30 Days Usage, No Contract)</span><br>
+                            <!-- $57.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span> -->
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 5GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> SSL Included</li>
+                        </ul>
+                        <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
+                    </div>
                     <div class="package-card" data-package="100GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">100GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $56/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $70/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $56.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $70.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 100GB Storage</li>
@@ -1387,8 +1401,8 @@
                     <div class="package-card" data-package="300GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">300GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $150/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $185/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $75.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $90.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 300GB Storage</li>
@@ -1402,8 +1416,8 @@
                     <div class="package-card" data-package="400GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">400GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $190/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $235/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $100.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $115.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
                             <li><i class="fa-solid fa-check"></i> 400GB Storage</li>
@@ -1420,17 +1434,17 @@
 
         <div id="shared-db" class="page">
             <section style="padding: 3rem 0;">
-                <h1 class="section-title">Shared <span style="color:var(--accent);">Database</span></h1>
+                <h1 class="section-title">Shared Database<span style="color:var(--accent);">Hosting</span></h1>
                 <p class="section-sub">Cost-effective, reliable shared database hosting for small projects and dev environments.</p>
                 <div class="packages-grid">
                     <div class="package-card" data-package="512MB Shared" data-service="Shared Database">
-                        <div class="package-name">512MB</div>
+                        <div class="package-name">50GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $45.79/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $57.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $22.79/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $30.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
-                            <li><i class="fa-solid fa-check"></i> 512MB RAM/Storage</li>
+                            <li><i class="fa-solid fa-check"></i> 50GB Storage</li>
                             <li><i class="fa-solid fa-check"></i> Shared Database</li>
                             <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
                             <li><i class="fa-solid fa-check"></i> SSL Included</li>
@@ -1438,13 +1452,13 @@
                         <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="700MB Shared" data-service="Shared Database">
-                        <div class="package-name">700MB</div>
+                        <div class="package-name">100GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $63.50/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $79.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $27.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $32.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
-                            <li><i class="fa-solid fa-check"></i> 700MB RAM/Storage</li>
+                            <li><i class="fa-solid fa-check"></i> 100GB Storage</li>
                             <li><i class="fa-solid fa-check"></i> Enhanced Bandwidth</li>
                             <li><i class="fa-solid fa-check"></i> Shared Database</li>
                             <li><i class="fa-solid fa-check"></i> Weekly Backups</li>
@@ -1453,13 +1467,13 @@
                         <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="700MB Shared">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="1GB Shared" data-service="Shared Database">
-                        <div class="package-name">1GB</div>
+                        <div class="package-name">200GB</div>
                         <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
-                            $84.79/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
-                            $105.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                            $40.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $45.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
                         </div>
                         <ul class="package-features">
-                            <li><i class="fa-solid fa-check"></i> 1GB RAM/Storage</li>
+                            <li><i class="fa-solid fa-check"></i> 200GB Storage</li>
                             <li><i class="fa-solid fa-check"></i> Shared Database</li>
                             <li><i class="fa-solid fa-check"></i> Scalable Resources</li>
                             <li><i class="fa-solid fa-check"></i> Daily Backups</li>
