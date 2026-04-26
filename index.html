@@ -1104,8 +1104,8 @@
             color: #0a0a0f;
         }
 
-        /* freelancer modal form */
-        .freelancer-form {
+        /* Wixui modal form */
+        .wixui-form {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -1131,7 +1131,7 @@
         .form-row input:focus {
             outline: 2px solid var(--accent);
         }
-        .freelancer-submit {
+        .wixui-submit {
             background: transparent;
             color: var(--accent);
             border: 2px solid var(--accent);
@@ -1143,7 +1143,7 @@
             box-shadow: 0 0 10px var(--accent);
             font-family: 'Orbitron', sans-serif;
         }
-        .freelancer-submit:hover {
+        .wixui-submit:hover {
             background: var(--accent);
             color: #0a0a0f;
         }
@@ -1225,32 +1225,36 @@
         </div>
     </div>
 
-    <!-- MODAL for freelancer contact form -->
-    <div id="freelancerModal" class="modal">
+    <!-- MODAL for Wixui contact form -->
+    <div id="wixuiModal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
-            <span class="modal-close" id="freelancerModalClose">&times;</span>
+            <span class="modal-close" id="wixuiModalClose">&times;</span>
             <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
                 <div class="modal-icon"><i class="fa-solid fa-user-tie"></i></div>
-            <div class="modal-title" id="freelancerModalTitle">Contact a freelancer</div>
+            <div class="modal-title" id="wixuiModalTitle">Contact Wixui</div>
             </div>
-            <div class="freelancer-form">
+            <div class="wixui-form">
                 <div class="form-row">
                     <label>Service</label>
-                    <input type="text" id="freelancerService" readonly value="Website design">
+                    <input type="text" id="wixuiService" readonly value="Website design">
                 </div>
                 <div class="form-row">
                     <label>Package</label>
-                    <input type="text" id="freelancerPackage" readonly value="Essentials">
+                    <input type="text" id="wixuiPackage" readonly value="Essentials">
                 </div>
                 <div class="form-row">
                     <label>Your name</label>
-                    <input type="text" id="freelancerName" placeholder="e.g. Jamie Smith">
+                    <input type="text" id="wixuiName" placeholder="e.g. Jamie Smith">
+                </div>
+                <div class="form-row">
+                    <label>Your email</label>
+                    <input type="email" id="wixuiEmail" placeholder="e.g. jamie@example.com">
                 </div>
                 <div class="form-row">
                     <label>Preferred date</label>
-                    <input type="date" id="freelancerDate">
+                    <input type="date" id="wixuiDate">
                 </div>
-                <button class="freelancer-submit" id="freelancerSubmitBtn">Send request</button>
+                <button class="wixui-submit" id="wixuiSubmitBtn">Send request</button>
             </div>
         </div>
     </div>
@@ -1313,13 +1317,13 @@
             <div class="about-section">
                 <div class="about-content">
                     <div class="founder-name">About <span>Wix UI</span></div>
-                    <p><strong>Wix UI</strong> is an IT consultant freelancer belonging to Taoheed Ogundapo, a highly motivated and well organized individual with over <strong>23 years’ experience</strong> in Software Design, Web/Graphic Design, UX/UI Design & as a Database Administrator in both National and International Environments with good understanding and work experience in Private and Governmental Departments, as well as United Nations Systems.</p>
+                    <p><strong>Wix UI</strong> is an IT consultant Wixui belonging to Taoheed Ogundapo, a highly motivated and well organized individual with over <strong>23 years’ experience</strong> in Software Design, Web/Graphic Design, UX/UI Design & as a Database Administrator in both National and International Environments with good understanding and work experience in Private and Governmental Departments, as well as United Nations Systems.</p>
 
                     <div class="founder-name">About <span>The founder</span></div>
                     
                     <p>A Computer Science graduate with experience in developing, implementing and managing websites, as well as proven skills in developing and maintaining database and applications.</p>
                     
-                    <p>As a Software Administrator, he strives to convey a client's message to the target audience through distinctive graphic, animation and the web. From corporate publications and online marketing email network, to colourful magazine layouts; from creating unique identity marks to festival and event promotions; from books to corporate web sites. He has solid expertise in bringing different IT freelancers together to work on projects and needs of individuals and companies.</p>
+                    <p>As a Software Administrator, he strives to convey a client's message to the target audience through distinctive graphic, animation and the web. From corporate publications and online marketing email network, to colourful magazine layouts; from creating unique identity marks to festival and event promotions; from books to corporate web sites. He has solid expertise in bringing different IT Wixui experts together to work on projects and needs of individuals and companies.</p>
                 </div>
             </div>
 
@@ -1381,7 +1385,7 @@
                             <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
                             <li><i class="fa-solid fa-check"></i> SSL Included</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="100GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">100GB</div>
@@ -1396,7 +1400,7 @@
                             <li><i class="fa-solid fa-check"></i> 24/7 Monitoring</li>
                             <li><i class="fa-solid fa-check"></i> High Availability</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Dedicated Database" data-package="100GB Dedicated">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="100GB Dedicated">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="300GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">300GB</div>
@@ -1411,7 +1415,7 @@
                             <li><i class="fa-solid fa-check"></i> Dedicated Support</li>
                             <li><i class="fa-solid fa-check"></i> Advanced Security</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Dedicated Database" data-package="300GB Dedicated">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="300GB Dedicated">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="400GB Dedicated" data-service="Dedicated Database">
                         <div class="package-name">400GB</div>
@@ -1426,7 +1430,7 @@
                             <li><i class="fa-solid fa-check"></i> Enterprise Security</li>
                             <li><i class="fa-solid fa-check"></i> Custom Configs</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Dedicated Database" data-package="400GB Dedicated">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="400GB Dedicated">Buy this Package</button>
                     </div>
                 </div>
             </section>
@@ -1449,7 +1453,7 @@
                             <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
                             <li><i class="fa-solid fa-check"></i> SSL Included</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="700MB Shared" data-service="Shared Database">
                         <div class="package-name">100GB</div>
@@ -1464,7 +1468,7 @@
                             <li><i class="fa-solid fa-check"></i> Weekly Backups</li>
                             <li><i class="fa-solid fa-check"></i> Performance Optimized</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="700MB Shared">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="700MB Shared">Buy this Package</button>
                     </div>
                     <div class="package-card" data-package="1GB Shared" data-service="Shared Database">
                         <div class="package-name">200GB</div>
@@ -1479,7 +1483,7 @@
                             <li><i class="fa-solid fa-check"></i> Daily Backups</li>
                             <li><i class="fa-solid fa-check"></i> Priority Support</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="Shared Database" data-package="1GB Shared">Buy this Package</button>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="1GB Shared">Buy this Package</button>
                     </div>
                 </div>
             </section>
@@ -1499,7 +1503,7 @@
                             <li><i class="fa-solid fa-check"></i> 3 months support</li>
                             <li><i class="fa-solid fa-check"></i> App store submission</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="MVP">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="MVP">Request for the MVP</button>
                     </div>
                     <div class="package-card" data-package="Growth" data-service="App development">
                         <div class="package-name">Growth</div>
@@ -1509,7 +1513,7 @@
                             <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
                             <li><i class="fa-solid fa-check"></i> Admin panel</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="Growth">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="Growth">Request for the Growth</button>
                     </div>
                     <div class="package-card" data-package="Enterprise" data-service="App development">
                         <div class="package-name">Enterprise</div>
@@ -1519,7 +1523,7 @@
                             <li><i class="fa-solid fa-check"></i> Dedicated team</li>
                             <li><i class="fa-solid fa-check"></i> Ongoing maintenance</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="App development" data-package="Enterprise">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="Enterprise">Request for the Enterprise</button>
                     </div>
                 </div>
             </section>
@@ -1539,7 +1543,7 @@
                             <li><i class="fa-solid fa-check"></i> 5 keyword focus</li>
                             <li><i class="fa-solid fa-check"></i> Monthly report</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="Local SEO">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="Local SEO">Request for the Local SEO</button>
                     </div>
                     <div class="package-card" data-package="National" data-service="SEO optimisations">
                         <div class="package-name">National</div>
@@ -1549,7 +1553,7 @@
                             <li><i class="fa-solid fa-check"></i> Backlink building</li>
                             <li><i class="fa-solid fa-check"></i> Competitor analysis</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="National">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="National">Request for the National</button>
                     </div>
                     <div class="package-card" data-package="E‑commerce SEO" data-service="SEO optimisations">
                         <div class="package-name">E‑commerce</div>
@@ -1559,7 +1563,7 @@
                             <li><i class="fa-solid fa-check"></i> Technical SEO</li>
                             <li><i class="fa-solid fa-check"></i> Monthly audits</li>
                         </ul>
-                        <button class="package-cta contact-freelancer-btn" data-service="SEO optimisations" data-package="E‑commerce SEO">Contact a freelancer</button>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="E‑commerce SEO">Request for the E‑commerce SEO</button>
                     </div>
                 </div>
             </section>
@@ -1813,48 +1817,53 @@
                 if (e.target === modal) closeModal();
             });
 
-            // freelancer modal logic
-            const freelancerModal = document.getElementById('freelancerModal');
-            const freelancerClose = document.getElementById('freelancerModalClose');
-            const freelancerService = document.getElementById('freelancerService');
-            const freelancerPackage = document.getElementById('freelancerPackage');
-            const freelancerName = document.getElementById('freelancerName');
-            const freelancerDate = document.getElementById('freelancerDate');
-            const freelancerSubmit = document.getElementById('freelancerSubmitBtn');
+            // Wixui modal logic
+            const wixuiModal = document.getElementById('wixuiModal');
+            const wixuiClose = document.getElementById('wixuiModalClose');
+            const wixuiService = document.getElementById('wixuiService');
+            const wixuiPackage = document.getElementById('wixuiPackage');
+            const wixuiName = document.getElementById('wixuiName');
+            const wixuiEmail = document.getElementById('wixuiEmail');
+            const wixuiDate = document.getElementById('wixuiDate');
+            const wixuiSubmit = document.getElementById('wixuiSubmitBtn');
+            const wixuiModalTitle = document.getElementById('wixuiModalTitle');
 
-            window.showFreelancerModal = (service, pkg) => {
-                freelancerService.value = service;
-                freelancerPackage.value = pkg;
-                freelancerName.value = '';
-                freelancerDate.value = '';
-                freelancerModal.classList.add('show');
+            window.showWixuiModal = (service, pkg) => {
+                wixuiService.value = service;
+                wixuiPackage.value = pkg;
+                wixuiName.value = '';
+                wixuiEmail.value = '';
+                wixuiDate.value = '';
+                wixuiModalTitle.innerText = 'Request for the ' + pkg;
+                wixuiModal.classList.add('show');
             };
 
-            freelancerClose.addEventListener('click', () => {
-                freelancerModal.classList.remove('show');
+            wixuiClose.addEventListener('click', () => {
+                wixuiModal.classList.remove('show');
             });
             window.addEventListener('click', (e) => {
-                if (e.target === freelancerModal) freelancerModal.classList.remove('show');
+                if (e.target === wixuiModal) wixuiModal.classList.remove('show');
             });
 
-            freelancerSubmit.addEventListener('click', () => {
-                const name = freelancerName.value.trim();
-                const date = freelancerDate.value;
-                if (!name || !date) {
-                    alert('Please fill in both name and date.');
+            wixuiSubmit.addEventListener('click', () => {
+                const name = wixuiName.value.trim();
+                const email = wixuiEmail.value.trim();
+                const date = wixuiDate.value;
+                if (!name || !email || !date) {
+                    alert('Please fill in name, email and date.');
                     return;
                 }
-                alert(`✨ Thanks ${name}! A freelancer will contact you about the ${freelancerService.value} - ${freelancerPackage.value} package. We’ll be in touch by ${new Date(date).toLocaleDateString()}.`);
-                freelancerModal.classList.remove('show');
+                alert(`✨ Thanks ${name}! We will contact you at ${email} about the ${wixuiService.value} - ${wixuiPackage.value} package. We’ll be in touch by ${new Date(date).toLocaleDateString()}.`);
+                wixuiModal.classList.remove('show');
             });
 
-            // attach freelancer modal to all contact-freelancer buttons
-            document.querySelectorAll('.contact-freelancer-btn').forEach(btn => {
+            // attach Wixui modal to all contact-wixui buttons
+            document.querySelectorAll('.contact-wixui-btn, .contact-freelancer-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const service = btn.getAttribute('data-service');
                     const pkg = btn.getAttribute('data-package');
-                    showFreelancerModal(service, pkg);
+                    showWixuiModal(service, pkg);
                 });
             });
 
