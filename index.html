@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIX UI · bespoke websites in the UK</title>
+    <link rel="shortcut icon" href="./image/wixui-favicon.png" type="image/x-icon">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Cyberpunk / tech fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0f;
+            color: #c0c0ff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            font-family: 'Exo 2', sans-serif;
+            background-image: 
+                linear-gradient(rgba(10, 10, 15, 0.92), rgba(10, 10, 15, 0.92)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0f"/><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="%23d64000" stroke-width="0.5" fill="none"/></svg>');
+            background-size: 100px;
+            position: relative;
+        }
+
+        /* Scan line effect */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: scan 8s linear infinite;
+            z-index: 1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Particles canvas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-blue), transparent);
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            animation: float-1 20s infinite linear;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation: float-2 25s infinite linear reverse;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 15%;
+            animation: float-3 30s infinite linear;
+        }
+
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-80px, 40px) rotate(120deg); }
+            66% { transform: translate(40px, -60px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes float-3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -30px) scale(1.2); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        :root {
+            --primary: #0a0a0f;
+            --accent: #d64000;        /* WIX UI orange */
+            --accent-glow: #ff5c1a;
+            --neon-blue: #00ffff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --cyber-gray: #1a1a2e;
+            --cyber-text: #c0c0ff;
+            --text-muted: #a0a0c0;
+            --border-subtle: rgba(214,64,0,0.2);
+            --shadow-neon: 0 0 10px #d64000, 0 0 20px #d64000;
+            --shadow: 0 25px 50px -12px rgba(214,64,0,0.3);
+            --bg-light: #0f0f1a;
+        }
+
+        /* navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+            cursor: pointer;
+            display: block;
+            filter: drop-shadow(0 0 8px var(--accent));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cyber-text);
+            font-size: 1rem;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        /* dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: transparent;
+            color: var(--cyber-text);
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropbtn:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -1rem;
+            background: var(--cyber-gray);
+            min-width: 240px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            z-index: 200;
+            border: 1px solid var(--accent);
+        }
+
+        .dropdown-content a {
+            color: var(--cyber-text);
+            padding: 0.7rem 2rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            border-bottom: none !important;
+            transition: 0.1s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(214,64,0,0.2);
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-cta {
+            background: transparent;
+            color: var(--accent) !important;
+            padding: 0.6rem 1.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--accent);
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: #0a0a0f !important;
+            box-shadow: 0 0 20px var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* main container */
+        .container {
+            /* max-width: 1280px; */
+            margin: 0 auto;
+            padding: 0 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 5rem 0 6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4rem;
+        }
+
+        .hero-left {
+            flex: 1 1 400px;
+        }
+
+        .hero-badge {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(214, 64, 0, 0.1);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--accent);
+        }
+
+        .hero-left h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+
+        /* rotating word animation - cyber style */
+        .rotating-words {
+            display: inline-block;
+            min-width: 280px;
+            position: relative;
+            color: var(--accent);
+            border-bottom: 4px solid var(--accent);
+            white-space: nowrap;
+            vertical-align: middle;
+            text-align: left;
+            height: 1.2em;            
+            margin: 0 4px;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: rotateWords 9s infinite;
+            position: absolute;
+            left: 0;
+            top: 0;                    
+            width: 100%;
+            text-align: left;
+        }
+
+        .word:nth-child(1) { animation-delay: 0s; }
+        .word:nth-child(2) { animation-delay: 3s; }
+        .word:nth-child(3) { animation-delay: 6s; }
+
+        @keyframes rotateWords {
+            0%, 30% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            5%, 25% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            33.33%, 100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-left p {
+            font-size: 1.2rem;
+            color: var(--cyber-text);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            padding: 1rem 2.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            background: var(--neon-blue);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 1rem 2.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-right {
+            flex: 1 1 400px;
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 0 30px var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
+            display: block;
+            filter: hue-rotate(320deg);
+        }
+
+        /* stats */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 4rem 0;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
+            border: 1px solid var(--accent);
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: 0.15s;
+            cursor: default;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            line-height: 1.2;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            color: var(--cyber-text);
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neon-blue));
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .section-sub {
+            color: var(--cyber-text);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* CLIENTS SECTION */
+        .clients-section {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
+        }
+
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem 4rem;
+            margin-top: 3rem;
+        }
+
+        .client-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.8;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .client-item:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+
+        .client-item i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .client-item span {
+            font-weight: 500;
+            color: var(--cyber-text);
+            font-size: 1.1rem;
+        }
+
+        .client-item img {
+            width: 200px;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
+        }
+
+        /* service cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .service-card {
+            background: var(--cyber-gray);
+            padding: 2.4rem 2rem;
+            border-radius: 8px;
+            transition: 0.2s;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0,255,255,0.2);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--neon-blue);
+            margin-bottom: 1.8rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+        }
+
+        .service-card p {
+            color: var(--cyber-text);
+        }
+
+        /* showcase / portfolio */
+        .showcase {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 4rem 0;
+            margin: 5rem 0;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(157,0,255,0.3);
+        }
+
+        .showcase-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .work-item {
+            flex: 1 1 280px;
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid var(--neon-pink);
+            cursor: pointer;
+        }
+
+        .work-item:hover {
+            transform: scale(1.01);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .work-img {
+            height: 280px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px black;
+        }
+
+        .work-caption {
+            padding: 1.8rem;
+        }
+
+        .work-caption h4 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--neon-pink);
+        }
+
+        .work-caption p {
+            color: var(--cyber-text);
+        }
+
+        /* PACKAGE GRID */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 0rem;
+        }
+        .package-card {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 3.5rem 1.5rem;
+            border: 1px solid var(--neon-green);
+            transition: 0.2s;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,255,157,0.2);
+        }
+        .package-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        .package-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        .package-features {
+            list-style: none;
+            margin: 1.8rem 0;
+            text-align: left;
+            padding: 0 0.5rem;
+        }
+        .package-features li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--cyber-text);
+        }
+        .package-features i {
+            color: var(--neon-green);
+            width: 20px;
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+        .package-cta {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+        .package-cta:hover {
+            background: var(--neon-green);
+            color: #0a0a0f;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* TEAM GRID */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .team-member {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 2rem .42rem;
+            text-align: center;
+            border: 1px solid var(--neon-pink);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .team-member:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        .team-member i {
+            font-size: 4rem;
+            color: var(--neon-pink);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+        .team-member h4 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: var(--neon-blue);
+        }
+        .team-member p {
+            color: var(--cyber-text);
+        }
+
+        /* INSIGHTS GRID */
+        .insights-grid-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .insight-card {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: 0.2s;
+            border: 1px solid var(--neon-purple);
+            cursor: pointer;
+        }
+        .insight-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        .insight-card i {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+            margin-bottom: 1.2rem;
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+        .insight-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--neon-green);
+        }
+        .insight-card p {
+            color: var(--cyber-text);
+        }
+
+        /* CONTACT PAGE */
+        .contact-grid {
+            display: flex;
+            gap: 4rem;
+            margin: 4rem 0 6rem;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1 1 280px;
+        }
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .contact-detail {
+            margin: 2rem 0;
+        }
+        .contact-detail p {
+            margin: 1rem 0;
+            color: var(--cyber-text);
+            font-size: 1.2rem;
+        }
+        .contact-detail i {
+            color: var(--accent);
+            width: 32px;
+            text-shadow: 0 0 5px var(--accent);
+        }
+        .contact-form {
+            flex: 2 1 400px;
+            background: var(--cyber-gray);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px var(--accent);
+            border: 1px solid var(--accent);
+        }
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neon-green);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: #0a0a0f;
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: 0.2s;
+            color: var(--cyber-text);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            color: white;
+            border-radius: 8px;
+            padding: 5rem 4rem;
+            margin: 6rem 0;
+            text-align: center;
+            box-shadow: 0 0 30px var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .cta-section h2 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .cta-section .accent-text {
+            color: var(--accent);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            opacity: 0.9;
+            color: var(--cyber-text);
+        }
+
+        .cta-btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            font-size: 1.2rem;
+            padding: 1.2rem 3.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 10px var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: var(--neon-green);
+            color: #0a0a0f;
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* footer */
+        .footer {
+            border-top: 1px solid var(--accent);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-left .logo-img {
+            height: 70px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 8px var(--accent));
+        }
+
+        .footer-left p {
+            color: var(--cyber-text);
+            max-width: 280px;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--neon-pink);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--cyber-text);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: 0.1s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .social-icons a {
+            color: var(--neon-blue);
+            font-size: 1.6rem;
+            transition: 0.1s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .uk-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(214,64,0,0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-weight: 400;
+            border: 1px solid var(--accent);
+            color: var(--cyber-text);
+        }
+
+        .uk-badge i {
+            color: var(--accent);
+        }
+
+        /* page visibility */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* MODAL STYLES - cyber */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--cyber-gray);
+            padding: 2.5rem;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 30px var(--accent);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
+            border: 2px solid var(--accent);
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.8rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--cyber-text);
+            transition: 0.1s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            text-shadow: 0 0 10px var(--accent);
+        }
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .modal-desc {
+            color: var(--cyber-text);
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.5;
+        }
+        .modal-btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+            width: 100%;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+        .modal-btn:hover {
+            background: var(--neon-green);
+            color: #0a0a0f;
+        }
+
+        /* Wixui modal form */
+        .wixui-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .form-row label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--neon-green);
+        }
+        .form-row input {
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--neon-blue);
+            background: #0a0a0f;
+            font-size: 1rem;
+            color: var(--cyber-text);
+        }
+        .form-row input:focus {
+            outline: 2px solid var(--accent);
+        }
+        .wixui-submit {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+            box-shadow: 0 0 10px var(--accent);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .wixui-submit:hover {
+            background: var(--accent);
+            color: #0a0a0f;
+        }
+
+        /* about section */
+        .about-section {
+            background: var(--cyber-gray);
+            border-radius: 8px;
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(214,64,0,0.3);
+        }
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-content p {
+            font-size: 1.2rem;
+            color: var(--cyber-text);
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+        .about-content strong {
+            color: var(--accent);
+        }
+        .founder-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        .founder-name span {
+            color: var(--accent);
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 5%;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+            .stats {
+                border-radius: 8px;
+            }
+            .rotating-words {
+                min-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
+    <!-- MODAL for generic info -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-crown"></i></div>
+            <div class="modal-title" id="modalTitle">Service detail</div>
+            <div class="modal-desc" id="modalDesc">Information goes here.</div>
+            <button class="modal-btn" id="modalAction">Got it</button>
+        </div>
+    </div>
+
+    <!-- MODAL for Wixui contact form -->
+    <div id="wixuiModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="modal-close" id="wixuiModalClose">&times;</span>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
+                <div class="modal-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="modal-title" id="wixuiModalTitle">Contact Wixui</div>
+            </div>
+            <div class="wixui-form">
+                <div class="form-row">
+                    <label>Service</label>
+                    <input type="text" id="wixuiService" readonly value="Website design">
+                </div>
+                <div class="form-row">
+                    <label>Package</label>
+                    <input type="text" id="wixuiPackage" readonly value="Essentials">
+                </div>
+                <div class="form-row">
+                    <label>Your name</label>
+                    <input type="text" id="wixuiName" placeholder="e.g. Jamie Smith">
+                </div>
+                <div class="form-row">
+                    <label>Your email</label>
+                    <input type="email" id="wixuiEmail" placeholder="e.g. jamie@example.com">
+                </div>
+                <div class="form-row">
+                    <label>Preferred date</label>
+                    <input type="date" id="wixuiDate">
+                </div>
+                <button class="wixui-submit" id="wixuiSubmitBtn">Send request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- navigation with dropdown & IMAGE LOGO -->
+    <nav class="navbar">
+        <img src="./image/wixui-logo.png" alt="WIX UI logo" class="logo-img" id="logo">
+
+        <div class="nav-links">
+            <a href="#" class="nav-link" data-page="home">Home</a>
+            <!-- SERVICES DROPDOWN -->
+            <div class="dropdown">
+                <button class="dropbtn">Services <i class="fa-solid fa-chevron-down" style="margin-left: 4px; font-size: 0.8rem;"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" class="nav-link" data-page="dedicated-db">Dedicated Database Hosting</a>
+                    <a href="#" class="nav-link" data-page="shared-db">Shared Database Hosting</a>
+                    <a href="#" class="nav-link" data-page="appdev">App development</a>
+                    <a href="#" class="nav-link" data-page="seo">SEO optimisations</a>
+                </div>
+            </div>
+            <a href="#" class="nav-link" data-page="studio">Studio</a>
+            <a href="#" class="nav-link" data-page="insights">Insights</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
+        </div>
+        <a href="#" class="nav-cta" id="globalCta">Start a project <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
+    </nav>
+
+    <main class="container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="hero-left">
+                    <span class="hero-badge"><i class="fa-solid fa-flag-uk"></i> based in London & Manchester</span>
+                    <h1>
+                        Websites with 
+                        <span class="rotating-words">
+                            <span class="word">attitude</span>
+                            <span class="word">swagger</span>
+                            <span class="word">edge</span>
+                        </span>
+                        , built in the UK
+                    </h1>
+                    <p>We're WIX UI — we craft digital experiences that convert, provoke, and seduce. No templates, just bespoke code & award‑winning design.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-primary" id="homeToWork">See our work <i class="fa-regular fa-eye"></i></a>
+                        <a href="#" class="btn-outline" id="homeToContact">Let's talk <i class="fa-regular fa-message"></i></a>
+                    </div>
+                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <span class="uk-badge"><i class="fa-solid fa-circle-check"></i> 100% UK team</span>
+                        <span class="uk-badge"><i class="fa-solid fa-trophy"></i> 48+ awards</span>
+                        <span class="uk-badge"><i class="fa-solid fa-clock"></i> 2‑week delivery</span>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500' viewBox='0 0 600 500'%3E%3Crect width='600' height='500' fill='%231a1a2e'/%3E%3Ccircle cx='400' cy='150' r='60' fill='%23d64000' opacity='0.7'/%3E%3Ccircle cx='180' cy='300' r='90' fill='%2300ffff' opacity='0.5'/%3E%3Cpath d='M120 400 L280 280 L420 400 L500 200 L550 420' stroke='%23d64000' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.8' /%3E%3Crect x='80' y='80' width='140' height='140' fill='none' stroke='%2300ffff' stroke-width='8' /%3E%3C/svg%3E" alt="WIX UI abstract design" style="width:100%;">
+                </div>
+            </section>
+
+            <!-- ABOUT US SECTION -->
+            <div class="about-section">
+                <div class="about-content">
+                    <div class="founder-name">About <span>Wix UI</span></div>
+                    <p><strong>Wix UI</strong> is an IT consultant Wixui belonging to Taoheed Ogundapo, a highly motivated and well organized individual with over <strong>23 years’ experience</strong> in Software Design, Web/Graphic Design, UX/UI Design & as a Database Administrator in both National and International Environments with good understanding and work experience in Private and Governmental Departments, as well as United Nations Systems.</p>
+
+                    <div class="founder-name">About <span>The founder</span></div>
+                    
+                    <p>A Computer Science graduate with experience in developing, implementing and managing websites, as well as proven skills in developing and maintaining database and applications.</p>
+                    
+                    <p>As a Software Administrator, he strives to convey a client's message to the target audience through distinctive graphic, animation and the web. From corporate publications and online marketing email network, to colourful magazine layouts; from creating unique identity marks to festival and event promotions; from books to corporate web sites. He has solid expertise in bringing different IT Wixui experts together to work on projects and needs of individuals and companies.</p>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-item"><span class="stat-number">14+</span> <span class="stat-label">years</span></div>
+                <div class="stat-item"><span class="stat-number">320</span> <span class="stat-label">websites</span></div>
+                <div class="stat-item"><span class="stat-number">100%</span> <span class="stat-label">UK based</span></div>
+                <div class="stat-item"><span class="stat-number">8.7s</span> <span class="stat-label">avg. response</span></div>
+            </div>
+
+            <!-- CLIENTS SECTION -->
+            <div class="clients-section">
+                <h2 class="section-title" style="margin-bottom: 0.5rem;">Our <span style="color: var(--accent);">clients</span></h2>
+                <p class="section-sub" style="margin-left: auto; margin-right: auto;">Trusted by innovative UK brands</p>
+                <div class="clients-grid">
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/d64000/white?text=HFA" alt="hfa-logo">
+                        </div>
+                        <span>HFA</span>
+                    </div>
+
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/00ffff/black?text=IWO" alt="iwo-logo">
+                        </div>
+                        <span>Iwo Land</span>
+                    </div>
+
+                    <div class="client-item">
+                        <div>
+                            <img src="https://placehold.co/200x100/ff00ff/white?text=HCA" alt="hca-logo">
+                        </div>
+                        <span>HCA</span>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <!-- SERVICE PAGES with PACKAGES -->
+        <!-- Website design -->
+        <div id="dedicated-db" class="page">
+            <section>
+                <h1 class="section-title">Dedicated Database <span style="color:var(--accent);">Hosting</span></h1>
+                <p class="section-sub">High-performance, isolated database instances for your most demanding applications.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-package="5GB Shared" data-service="Shared Database">
+                        <div class="package-name">5GB</div> {Guest Users Only}
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $45.79 <span style="font-size: 0.8rem; color: var(--cyber-text);">(30 Days Usage, No Contract)</span><br>
+                            <!-- $57.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span> -->
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 5GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> SSL Included</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="100GB Dedicated" data-service="Dedicated Database">
+                        <div class="package-name">100GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $56.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $70.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 100GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Automated Backups</li>
+                            <li><i class="fa-solid fa-check"></i> 24/7 Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> High Availability</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="100GB Dedicated">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="300GB Dedicated" data-service="Dedicated Database">
+                        <div class="package-name">300GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $75.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $90.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 300GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Multi-AZ Deployment</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Support</li>
+                            <li><i class="fa-solid fa-check"></i> Advanced Security</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="300GB Dedicated">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="400GB Dedicated" data-service="Dedicated Database">
+                        <div class="package-name">400GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $100.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $115.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 400GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Vertical Scaling</li>
+                            <li><i class="fa-solid fa-check"></i> Enterprise Security</li>
+                            <li><i class="fa-solid fa-check"></i> Custom Configs</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="400GB Dedicated">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="1TB Dedicated" data-service="Dedicated Database">
+                        <div class="package-name">2TB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $130.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $145.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 2TB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated Database</li>
+                            <li><i class="fa-solid fa-check"></i> Unlimited Scaling</li>
+                            <li><i class="fa-solid fa-check"></i> Enterprise Security</li>
+                            <li><i class="fa-solid fa-check"></i> Custom Configs</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Dedicated Database" data-package="1TB Dedicated">Buy this Package</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="shared-db" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">Shared Database<span style="color:var(--accent);">Hosting</span></h1>
+                <p class="section-sub">Cost-effective, reliable shared database hosting for small projects and dev environments.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-package="512MB Shared" data-service="Shared Database">
+                        <div class="package-name">50GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $22.79/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $30.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 50GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Shared Database</li>
+                            <li><i class="fa-solid fa-check"></i> Basic Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> SSL Included</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="512MB Shared">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="700MB Shared" data-service="Shared Database">
+                        <div class="package-name">100GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $27.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $32.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 100GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Enhanced Bandwidth</li>
+                            <li><i class="fa-solid fa-check"></i> Shared Database</li>
+                            <li><i class="fa-solid fa-check"></i> Weekly Backups</li>
+                            <li><i class="fa-solid fa-check"></i> Performance Optimized</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="700MB Shared">Buy this Package</button>
+                    </div>
+                    <div class="package-card" data-package="1GB Shared" data-service="Shared Database">
+                        <div class="package-name">200GB</div>
+                        <div style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">
+                            $40.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(12 months contract)</span><br>
+                            $45.00/month <span style="font-size: 0.8rem; color: var(--cyber-text);">(no contract)</span>
+                        </div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 200GB Storage</li>
+                            <li><i class="fa-solid fa-check"></i> Shared Database</li>
+                            <li><i class="fa-solid fa-check"></i> Scalable Resources</li>
+                            <li><i class="fa-solid fa-check"></i> Daily Backups</li>
+                            <li><i class="fa-solid fa-check"></i> Priority Support</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="Shared Database" data-package="1GB Shared">Buy this Package</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- App development -->
+        <div id="appdev" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">App <span style="color:var(--accent);">development</span></h1>
+                <p class="section-sub">Native and cross‑platform apps that users love.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-package="MVP" data-service="App development">
+                        <div class="package-name">MVP</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> iOS & Android</li>
+                            <li><i class="fa-solid fa-check"></i> Backend API</li>
+                            <li><i class="fa-solid fa-check"></i> 3 months support</li>
+                            <li><i class="fa-solid fa-check"></i> App store submission</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="MVP">Request for the MVP</button>
+                    </div>
+                    <div class="package-card" data-package="Growth" data-service="App development">
+                        <div class="package-name">Growth</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Advanced features</li>
+                            <li><i class="fa-solid fa-check"></i> Push notifications</li>
+                            <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
+                            <li><i class="fa-solid fa-check"></i> Admin panel</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="Growth">Request for the Growth</button>
+                    </div>
+                    <div class="package-card" data-package="Enterprise" data-service="App development">
+                        <div class="package-name">Enterprise</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Scalable backend</li>
+                            <li><i class="fa-solid fa-check"></i> Multi‑region</li>
+                            <li><i class="fa-solid fa-check"></i> Dedicated team</li>
+                            <li><i class="fa-solid fa-check"></i> Ongoing maintenance</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="App development" data-package="Enterprise">Request for the Enterprise</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SEO optimizations -->
+        <div id="seo" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">SEO <span style="color:var(--accent);">optimizations</span></h1>
+                <p class="section-sub">Data‑driven SEO to get you to the top of Google.</p>
+                <div class="packages-grid">
+                    <div class="package-card" data-package="Local SEO" data-service="SEO optimisations">
+                        <div class="package-name">Local SEO</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Google My Business</li>
+                            <li><i class="fa-solid fa-check"></i> Local citations</li>
+                            <li><i class="fa-solid fa-check"></i> 5 keyword focus</li>
+                            <li><i class="fa-solid fa-check"></i> Monthly report</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="Local SEO">Request for the Local SEO</button>
+                    </div>
+                    <div class="package-card" data-package="National" data-service="SEO optimisations">
+                        <div class="package-name">National</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> 20 keywords</li>
+                            <li><i class="fa-solid fa-check"></i> Content strategy</li>
+                            <li><i class="fa-solid fa-check"></i> Backlink building</li>
+                            <li><i class="fa-solid fa-check"></i> Competitor analysis</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="National">Request for the National</button>
+                    </div>
+                    <div class="package-card" data-package="E‑commerce SEO" data-service="SEO optimisations">
+                        <div class="package-name">E‑commerce</div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> Product optimisation</li>
+                            <li><i class="fa-solid fa-check"></i> Category pages</li>
+                            <li><i class="fa-solid fa-check"></i> Technical SEO</li>
+                            <li><i class="fa-solid fa-check"></i> Monthly audits</li>
+                        </ul>
+                        <button class="package-cta contact-wixui-btn" data-service="SEO optimisations" data-package="E‑commerce SEO">Request for the E‑commerce SEO</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- STUDIO PAGE -->
+        <div id="studio" class="page">
+            <section style="padding: 4rem 0;">
+                <h1 class="section-title">We are <span style="color:var(--accent);">WIX UI</span></h1>
+                <p class="section-sub">A tight‑knit crew based in Manchester and London. We’ve been crafting award‑winning digital experiences since 2011.</p>
+                <div class="team-grid">
+                    <!-- <div class="team-member">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Taoheed Ogundapo</h4>
+                        <p>Founder / Creative director</p>
+                    </div> -->
+                    <div class="team-member">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Olamilekan Muhayad</h4>
+                        <p>Lead developer</p>
+                    </div>
+                    <div class="team-member">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Saminu Awwal</h4>
+                        <p>UX director</p>
+                    </div>
+                    <div class="team-member">
+                        <i class="fa-regular fa-user"></i>
+                        <h4>Bello Monsuru</h4>
+                        <p>Strategy & CRO</p>
+                    </div>
+                </div>
+                <div style="background: var(--cyber-gray); border-radius: 8px; padding: 3rem; margin: 4rem 0; border: 1px solid var(--neon-purple);">
+                    <h2 style="font-size: 2rem; color: var(--neon-purple);">⭐ Our manifesto</h2>
+                    <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto; color: var(--cyber-text);">We believe websites should provoke, seduce, and convert. No cookie‑cutter templates. Every line of code is written with intention.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- INSIGHTS PAGE -->
+        <div id="insights" class="page">
+            <section style="padding: 4rem 0;">
+                <h1 class="section-title">Insights & <span style="color:var(--accent)">attitude</span></h1>
+                <div class="insights-grid-full">
+                    <div class="insight-card" data-modal-icon="fa-newspaper" data-modal-title="Headless commerce" data-modal-desc="Why UK brands are switching to headless: faster sites, better scalability.">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <h3>Headless commerce</h3>
+                        <p>The future of UK e‑com: why speed matters.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-gem" data-modal-title="Design with swagger" data-modal-desc="Our 5‑step framework for creating interfaces that sell.">
+                        <i class="fa-regular fa-gem"></i>
+                        <h3>Design with swagger</h3>
+                        <p>How we create interfaces that sell.</p>
+                    </div>
+                    <div class="insight-card" data-modal-icon="fa-clock" data-modal-title="8.7s response" data-modal-desc="Our client obsession, quantified.">
+                        <i class="fa-regular fa-clock"></i>
+                        <h3>8.7s response</h3>
+                        <p>Our client obsession, quantified.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page">
+            <section style="padding: 3rem 0;">
+                <h1 class="section-title">Let’s <span style="color:var(--accent);">talk</span></h1>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>We reply within hours, not days.</h3>
+                        <div class="contact-detail">
+                            <p><i class="fa-solid fa-envelope"></i> hello@wixui.co.uk</p>
+                            <p><i class="fa-solid fa-phone"></i> +44 7950 967561</p>
+                            <p><i class="fa-solid fa-location-dot"></i> 28 Woods Road, London SE15 2SW</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form onsubmit="event.preventDefault(); showModal('fa-paper-plane','Message sent','✨ Thanks for reaching out (demo). We’ll be in touch.');">
+                            <div class="form-group">
+                                <label>Full name</label>
+                                <input type="text" placeholder="Jamie Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="hello@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width:100%;">Send message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Global CTA -->
+        <section class="cta-section">
+            <h2>Ready to <span class="accent-text">seduce</span> your audience?</h2>
+            <p>Join the UK brands that trust WIX UI.</p>
+            <button id="startYourProject" class="cta-btn">👉  Start your project  👈</button>
+        </section>
+
+        <!-- footer with image logo -->
+        <footer class="footer">
+            <div class="footer-left">
+                <img src="./image/wixui-logo.png" alt="WIX UI logo" class="logo-img">
+                <p>Bespoke websites for the bold. Proudly built in the UK.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-behance"></i></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <a href="#" class="nav-link" data-page="dedicated-db">Dedicated DB</a>
+                    <a href="#" class="nav-link" data-page="shared-db">Shared DB</a>
+                    <a href="#" class="nav-link" data-page="appdev">App dev</a>
+                    <a href="#" class="nav-link" data-page="seo">SEO</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Studio</h5>
+                    <a href="#" class="nav-link" data-page="studio">Work</a>
+                    <a href="#" class="nav-link" data-page="studio">People</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="#" class="nav-link" data-page="contact">hello@wixui.co.uk</a>
+                </div>
+            </div>
+        </footer>
+        <div style="text-align: center; padding: 1.5rem 0; color: var(--cyber-text); border-top: 1px solid var(--accent);">© 2026 WIX UI — Websites with swagger.</div>
+    </main>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#00ffff", "#ff00ff", "#9d00ff", "#00ff9d"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#d64000",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+
+        (function() {
+            const pages = {
+                home: document.getElementById('home'),
+                'dedicated-db': document.getElementById('dedicated-db'),
+                'shared-db': document.getElementById('shared-db'),
+                appdev: document.getElementById('appdev'),
+                seo: document.getElementById('seo'),
+                studio: document.getElementById('studio'),
+                insights: document.getElementById('insights'),
+                contact: document.getElementById('contact')
+            };
+
+            function showPage(pageId) {
+                Object.values(pages).forEach(p => p?.classList.remove('active'));
+                if (pages[pageId]) pages[pageId].classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) link.classList.add('active');
+                });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.dataset.page;
+                    if (page && pages[page]) showPage(page);
+                });
+            });
+
+            document.getElementById('homeToWork')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('studio');
+            });
+            document.getElementById('homeToContact')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('contact');
+            });
+            document.querySelectorAll('#logo').forEach(logo => {
+                logo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home');
+                });
+            });
+            document.getElementById('globalCta').addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('contact');
+            });
+            document.getElementById('startYourProject').addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('contact');
+            });
+
+            // modal logic for generic info modal
+            const modal = document.getElementById('customModal');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalClose = document.getElementById('modalClose');
+            const modalAction = document.getElementById('modalAction');
+
+            window.showModal = (icon, title, desc) => {
+                modalIcon.innerHTML = `<i class="fa-solid ${icon}"></i>`;
+                modalTitle.innerText = title;
+                modalDesc.innerText = desc;
+                modal.classList.add('show');
+            };
+
+            function closeModal() {
+                modal.classList.remove('show');
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modalAction.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Wixui modal logic
+            const wixuiModal = document.getElementById('wixuiModal');
+            const wixuiClose = document.getElementById('wixuiModalClose');
+            const wixuiService = document.getElementById('wixuiService');
+            const wixuiPackage = document.getElementById('wixuiPackage');
+            const wixuiName = document.getElementById('wixuiName');
+            const wixuiEmail = document.getElementById('wixuiEmail');
+            const wixuiDate = document.getElementById('wixuiDate');
+            const wixuiSubmit = document.getElementById('wixuiSubmitBtn');
+            const wixuiModalTitle = document.getElementById('wixuiModalTitle');
+
+            window.showWixuiModal = (service, pkg) => {
+                wixuiService.value = service;
+                wixuiPackage.value = pkg;
+                wixuiName.value = '';
+                wixuiEmail.value = '';
+                wixuiDate.value = '';
+                wixuiModalTitle.innerText = 'Request for the ' + pkg;
+                wixuiModal.classList.add('show');
+            };
+
+            wixuiClose.addEventListener('click', () => {
+                wixuiModal.classList.remove('show');
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === wixuiModal) wixuiModal.classList.remove('show');
+            });
+
+            wixuiSubmit.addEventListener('click', () => {
+                const name = wixuiName.value.trim();
+                const email = wixuiEmail.value.trim();
+                const date = wixuiDate.value;
+                if (!name || !email || !date) {
+                    alert('Please fill in name, email and date.');
+                    return;
+                }
+                alert(`✨ Thanks ${name}! We will contact you at ${email} about the ${wixuiService.value} - ${wixuiPackage.value} package. We’ll be in touch by ${new Date(date).toLocaleDateString()}.`);
+                wixuiModal.classList.remove('show');
+            });
+
+            // attach Wixui modal to all contact-wixui buttons
+            document.querySelectorAll('.contact-wixui-btn, .contact-freelancer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const service = btn.getAttribute('data-service');
+                    const pkg = btn.getAttribute('data-package');
+                    showWixuiModal(service, pkg);
+                });
+            });
+
+            // attach generic modal to any element with data-modal-* attributes (except buttons)
+            document.querySelectorAll('[data-modal-icon]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    if (e.target.closest('button')) return;
+                    const icon = el.dataset.modalIcon;
+                    const title = el.dataset.modalTitle;
+                    const desc = el.dataset.modalDesc;
+                    if (icon && title && desc) showModal(icon, title, desc);
+                });
+            });
+
+            showPage('home');
+        })();
+    </script>
+</body>
+</html>
